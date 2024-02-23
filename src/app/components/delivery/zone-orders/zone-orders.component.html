@@ -1,0 +1,21 @@
+
+ <div class="status-list">
+    <div class="px-3 pb-4 pt-3 uppercase text-center text-title truncate">
+        {{ IssueStatusDisplay[status] |translate}}
+        <span class="lowercase text-13">{{ ordersCount }}</span>
+    </div>
+    <div class="example-list"
+         cdkDropList
+         [cdkDropListData]="orders"
+         [id]="status"
+         (cdkDropListDropped)="drop($event)">
+        <div issue-card *ngFor="let order of orders"
+                    [order]="order"
+                    cdkDragLockAxis="y"
+                    cdkDrag
+                    [cdkDragData]="order">
+</div>
+    </div>
+</div> 
+
+

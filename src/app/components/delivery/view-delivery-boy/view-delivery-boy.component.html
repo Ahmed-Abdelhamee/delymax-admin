@@ -1,0 +1,132 @@
+<!-- Page Content -->
+<div class="content container-fluid">
+    <div class="card mb-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="profile-view">
+                        
+                        <div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="profile-info-left">
+                                        <ul class="order-detail">
+                                            <li>{{'Name :'|translate}} {{dBoy?.name}}</li>
+                                            <li>{{'Phone :'|translate}} {{dBoy?.phone}}</li>
+                                            <li>{{'Email :'|translate}} {{dBoy?.email}}</li>
+                                            <li>{{'Town :'|translate}} {{towns|townPipe:dBoy?.town}}</li>
+                                            <li>{{'State :'|translate}} {{states|statePipe:dBoy?.state}}</li>
+                                            <li>{{'Address :'|translate}} {{dBoy?.address}}</li>
+                                            <li>{{'Account Type :'|translate}} {{dBoy?.aType|translate}}</li>
+                                            <li>{{'Vehicle Type :'|translate}} {{dBoy?.vType |translate}}</li>
+                                        </ul>
+                                       
+                                    
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="profile-info-left">
+                                        <ul class="order-detail">
+                                            <li>{{'ID Number :'|translate}} {{dBoy?.idNumber}}</li>
+                                            <li><a href="{{dBoy?.idPhoto1}}" target="_blank">{{'ID Image 1'|translate}} </a></li>
+                                            <li><a href="{{dBoy?.idPhoto2}}" target="_blank">{{'ID Image 2'|translate}}</a></li>
+                                            <li><a href="{{dBoy?.dLPhoto}}" target="_blank">{{'Driving License Image'|translate}}</a></li>
+                                            <li><a href="{{dBoy?.mLPhoto}}" target="_blank">{{'Vehicle License Image'|translate}}</a></li>
+                                            <li><a href="{{dBoy?.fishPhoto}}" target="_blank">{{'Feash Image Type'|translate}}</a></li>
+                                        </ul>
+                                       
+                                    
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="profile-info-left">
+                                        <ul class="order-detail">
+                                            <li>{{'Status :'|translate}} <a style="color: rgb(84, 167, 2);" *ngIf="!dBoy?.block && dBoy?.status=='1'">{{'Active'|translate}}</a>
+                                                <a style="color: rgb(78, 76, 76);" *ngIf="!dBoy?.block && dBoy?.status=='0'">{{'Not Active'|translate}}</a><a style="color: rgb(240, 20, 4);" *ngIf="dBoy?.block">{{'Blocked'|translate}}</a></li>
+                                                 <li><button style="margin-top: 10px; width: 150px;" type="button" (click)="onEdit(dBoy.phone)" class="btn btn-custom">{{'Edit'|translate}}</button></li>
+                                            <li><button style="margin-top: 10px; width: 150px;" type="button" (click)="onActive(dBoy.phone)" class="btn btn-custom">{{'Activeate'|translate}}</button></li>
+                                            <li ><button type="button" style="margin-top: 10px; width: 150px;" (click)="onBlock(dBoy.phone)" class="btn btn-custom">{{'Block'|translate}}</button></li>
+                                            
+                                            
+                                        </ul>
+                                       
+                                    
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card tab-box">
+        <div class="row user-tabs">
+            <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
+                <ul class="nav nav-tabs nav-tabs-bottom">
+                    <li class="nav-item"><a href="#profile" data-toggle="tab" class="nav-link active">{{'Summary'|translate}}</a>
+                    </li>
+                    <li class="nav-item"><a href="#orders" data-toggle="tab" class="nav-link">{{'Orders'|translate}}</a></li>
+                    <li class="nav-item"><a href="#gifts" data-toggle="tab" class="nav-link">{{'Accounts'|translate}}</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content">
+
+        <!-- Profile Info Tab -->
+        <div id="profile" class="pro-overview tab-pane fade show active">
+         <app-delivery-summery></app-delivery-summery>
+        </div>
+        <!-- /Profile Info Tab -->
+
+        <!-- Invoices Tab -->
+        <div class="tab-pane fade" id="orders">
+        <app-delivery-orders></app-delivery-orders>
+        </div>
+        <!-- /Invoices Tab -->
+
+        <!-- Account Tab -->
+        <div class="tab-pane fade" id="gifts">
+        <app-delivery-accounts></app-delivery-accounts>
+        </div>
+        <!-- Account Tab -->
+        <!-- Services Tab -->
+        <div class="tab-pane fade" id="schadul">
+           
+         </div>
+         <!-- Services Tab -->
+ 
+      
+    </div>
+</div>
+<!-- /Page Content -->
+<div class="modal custom-modal fade" id="collect" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header text-center">
+                    <h3 class="text-center">{{'Collect'|translate}}</h3>
+                    <h4 class="text-center">{{'you want to Collect Amount'|translate}} {{dbAcoount?.total}} {{'EGP'|translate}} {{'?'|translate}}</h4>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <a  class="btn btn-primary continue-btn"
+                                (click)="onCollect()">{{'Collect'|translate}}</a>
+                        </div>
+                        <div class="col-6">
+                            <a  data-dismiss="modal"
+                                class="btn btn-primary cancel-btn">{{'Cancel'|translate}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

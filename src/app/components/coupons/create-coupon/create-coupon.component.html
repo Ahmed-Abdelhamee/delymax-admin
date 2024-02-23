@@ -1,0 +1,69 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header">
+        </div>
+        <div class="card-body tab2-card">
+            <ngb-tabset class="tab-coupon">
+                <ngb-tab title="">
+                    <ng-template ngbTabContent>
+                        <form [formGroup]="generalForm"  class="needs-validation" novalidate="">
+ 
+                            <div class="row">
+                                <div class="col-sm-12">
+                                   
+                                    <div class="form-group row">
+                                        <label for="validationCustom1" class="col-xl-3 col-md-4"><span>*</span>
+                                            {{'Code'|translate}}</label>
+                                        <input class="form-control col-md-7" formControlName="code"
+                                            id="validationCustom1" type="text" required="">
+                                        <div class="valid-feedback">{{'Please Provide a Valid Coupon Code.'|translate}}</div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-md-4">{{'Start Date'|translate}}</label>
+                                        <div class="input-group col-md-7 input-grp-p">
+                                            <input class="datepicker-here form-control digits" ngbDatepicker
+                                                formControlName="startDate" #f="ngbDatepicker">
+                                            <div class="input-group-append">
+                                                <button class="btn calendar" (click)="f.toggle()" type="button"><i
+                                                        class="fa fa-calendar"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-md-4">{{'End Date'|translate}}</label>
+                                        <div class="input-group col-md-7 input-grp-p">
+                                            <input class="datepicker-here form-control digits" ngbDatepicker
+                                                formControlName="endDate" #c="ngbDatepicker">
+                                            <div class="input-group-append">
+                                                <button class="btn calendar" (click)="c.toggle()" type="button"><i
+                                                        class="fa fa-calendar"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-md-4">{{'Discount'|translate}}</label>
+                                        <input class="form-control col-md-7" formControlName="discount" type="number"
+                                            required="">
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom6" class="col-xl-3 col-md-4">{{'Limit'|translate}}</label>
+                                        <input class="form-control col-md-7" formControlName="limit" id="validationCustom6"
+                                            type="number">
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </form>
+                    </ng-template>
+                </ngb-tab>
+              
+            </ngb-tabset>
+            <div class="pull-right">
+                <button type="button" class="btn btn-primary" (click)="addCoupon()">{{'Save'|translate}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->

@@ -1,0 +1,48 @@
+
+    <div class="container">
+        <div class="page-wrapper" (resized)="onResize($event)" [ngStyle]="{ 'height' : innerHeight }" >
+        <div class="chat-main-window">
+            <div >
+                <div class="navbar">
+                   
+                            <h3><span>{{'Chats'|translate}}</span></h3>
+                    
+                    
+                </div>
+            </div>
+            <div class="chat-contents">
+                <div class="chat-content-wrap">
+                    <div class="chat-wrap-inner">
+                        <div class="chat-box col-xl-6" id="chats" >
+                            <div class="chats" >
+                            
+                                <div class="user-card"
+                                    *ngFor="let item of chatsListAfter">
+                                    <a routerLink = "/chat/chat" [queryParams]="{id: item?.ref,user:item?.id}">
+                                    <div class="chat-content">
+                                        <h4>{{ item.name }}</h4>
+                                        <p>{{ item.last_msg }}</p>
+                                        <span class="chat-time">{{item.timeStamp|dateAgo:'ar' |translate}}</span>
+                                    </div>
+                                </a>
+                                </div>
+                           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-footer">
+           
+            </div>
+            <app-pagination
+                [products]="chatsList"
+                [paginate]="paginate"
+                (setPage)="setPage($event)">
+            </app-pagination>
+        </div> 
+    </div>
+   
+</div>
+
+

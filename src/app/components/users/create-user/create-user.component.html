@@ -1,0 +1,464 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card tab2-card">
+                <div class="card-header">
+                    <h5> {{'Add User'|translate}}</h5>
+                </div>
+                <div class="card-body tab2-card">
+                    <ngb-tabset class="tab-coupon">
+                        <ngb-tab title="{{'Account'|translate}}">
+                            <ng-template ngbTabContent>                                                                                                                                        <div class="tab-pane fade active show" id="account" role="tabpanel"
+                                        aria-labelledby="account-tab">
+                                    <form [formGroup]="accountForm" class="needs-validation user-add" novalida>
+                                        <h4>{{'Account Details'|translate}}</h4>
+                                        <div class="form-group row">
+                                            <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0">{{'Type :'|translate}}</label>
+                                            <mat-select class="form-control digits col-xl-8 col-sm-7"
+                                                id="exampleFormControlSelect2" [(ngModel)]= "selectedRole" formControlName="type" (selectionChange)="selectRole()" >
+                                                <mat-option *ngFor="let role of roles" [value]="role.type" >
+                                                    {{role.name|translate}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </div>
+                                      
+                                       
+                                      
+                                        <div class="form-group row">
+                                            <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>
+                                                {{'First Name'|translate}}</label>
+                                            <input class="form-control col-xl-8 col-md-7" id="validationCustom0"
+                                                type="text"  formControlName="firstName" required="">
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="validationCustom1" class="col-xl-3 col-md-4"><span>*</span>
+                                                {{'Last Name'|translate}}</label>
+                                            <input class="form-control col-xl-8 col-md-7" id="validationCustom1"
+                                                type="text"  formControlName="lastName" required="">
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="validationCustom2" class="col-xl-3 col-md-4"><span>*</span>
+                                                {{'Phone'|translate}}</label>
+                                            <input class="form-control col-xl-8 col-md-7" id="validationCustom2"
+                                                type="text"  formControlName="phone" required="">
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="validationCustom2" class="col-xl-3 col-md-4"><span>*</span>
+                                                {{'Email'|translate}}</label>
+                                            <input class="form-control col-xl-8 col-md-7" id="validationCustom3"
+                                                type="text"  formControlName="email" required="">
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="validationCustom3" class="col-xl-3 col-md-4"><span>*</span>
+                                                {{'Password'|translate}}</label>
+                                            <input class="form-control col-xl-8 col-md-7" id="validationCustom4"
+                                                type="password"  formControlName="password" required="">
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="validationCustom4" class="col-xl-3 col-md-4"><span>*</span>
+                                                {{'Confirm Password'|translate}}</label>
+                                            <input class="form-control col-xl-8 col-md-7" id="validationCustom5"
+                                                type="password"  formControlName="confirmPwd" required="">
+                                        </div>
+                                    </form>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab>
+                            <ng-template ngbTabTitle>{{'Permission'|translate}}
+                                <ng-template ngbTabContent>
+                                    <form [formGroup]="permissionForm"
+                                        class="needs-validation user-add" novalidate="">
+                                        <div class="permission-block">
+                                            <div class="attribute-blocks">
+                                                <h5 class="f-w-600 mb-3">{{'Product Related permission'|translate}} </h5>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'Add Product'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div
+                                                            class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani1">
+                                                                <input class="radio_animated" id="edo-ani1" type="radio"
+                                                                     formControlName="add_product" name="add_product" [value]=true>
+                                                                {{'Allow'|translate}}
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani2">
+                                                                <input class="radio_animated" id="edo-ani2" type="radio"
+                                                                formControlName="add_product" name="add_product" [value]=false checked >
+                                                                {{'Deny'|translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'Update Product'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div
+                                                            class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani3">
+                                                                <input class="radio_animated" id="edo-ani3" type="radio"
+                                                                formControlName="edit_product" name="edit_product" [value]=true >
+                                                                {{'Allow'|translate}}
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani4">
+                                                                <input class="radio_animated" id="edo-ani4" type="radio"
+                                                                formControlName="edit_product" name="edit_product" [value]=false  checked>
+                                                                {{'Deny'|translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'Delete Product'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div
+                                                            class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani5">
+                                                                <input class="radio_animated" id="edo-ani5" type="radio"
+                                                                formControlName="delete_product" name="delete_product" [value]=true >
+                                                                {{'Allow'|translate}}
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani6">
+                                                                <input class="radio_animated" id="edo-ani6" type="radio"
+                                                                formControlName="delete_product" name="delete_product" [value]=false  checked>
+                                                                {{'Deny'|translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                            <div class="attribute-blocks">
+                                                <h5 class="f-w-600 mb-3">{{'Order Related permission'|translate}} </h5>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'View Orders'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div
+                                                            class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani9">
+                                                                <input class="radio_animated" id="edo-ani9" type="radio"
+                                                                formControlName="view_order" name="view_order" [value]=true>
+                                                                {{'Allow'|translate}}
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani10">
+                                                                <input class="radio_animated" id="edo-ani10"
+                                                                    type="radio" formControlName="view_order" name="view_order" [value]=false checked>
+                                                                    {{'Deny'|translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'Update Order'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div
+                                                            class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani11">
+                                                                <input class="radio_animated" id="edo-ani11"
+                                                                    type="radio" formControlName="update_order" name="update_order" [value]=true>
+                                                                    {{'Allow'|translate}}
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani12">
+                                                                <input class="radio_animated" id="edo-ani12"
+                                                                    type="radio" formControlName="update_order" name="update_order" [value]=false checked>
+                                                                    {{'Deny'|translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'Delete Order'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div
+                                                            class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani13">
+                                                                <input class="radio_animated" id="edo-ani13"
+                                                                    type="radio" formControlName="delete_order" name="delete_order" [value]=true>
+                                                                    {{'Allow'|translate}}
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani14">
+                                                                <input class="radio_animated" id="edo-ani14"
+                                                                    type="radio" formControlName="delete_order" name="delete_order" [value]=false checked>
+                                                                    {{'Deny'|translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="attribute-blocks">
+                                                <h5 class="f-w-600 mb-3">{{'Users Related permission'|translate}} </h5>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'Add User'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div
+                                                            class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani9">
+                                                                <input class="radio_animated" id="edo-ani9" type="radio"
+                                                                formControlName="add_user" name="add_user" [value]=true>
+                                                                {{'Allow'|translate}}
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani10">
+                                                                <input class="radio_animated" id="edo-ani10"
+                                                                    type="radio" formControlName="add_user" name="add_user" [value]=false checked>
+                                                                    {{'Deny'|translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'Update User'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div
+                                                            class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani11">
+                                                                <input class="radio_animated" id="edo-ani11"
+                                                                    type="radio" formControlName="update_user" name="update_user" [value]=true>
+                                                                    {{'Allow'|translate}}
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani12">
+                                                                <input class="radio_animated" id="edo-ani12"
+                                                                    type="radio" formControlName="update_user" name="update_user" [value]=false checked>
+                                                                    {{'Deny'|translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'Delete User'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div
+                                                            class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani13">
+                                                                <input class="radio_animated" id="edo-ani13"
+                                                                    type="radio" formControlName="delete_user" name="delete_user" [value]=true>
+                                                                    {{'Allow'|translate}}
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani14">
+                                                                <input class="radio_animated" id="edo-ani14"
+                                                                    type="radio" formControlName="delete_user" name="delete_user" [value]=false checked>
+                                                                    {{'Deny'|translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="attribute-blocks">
+                                                <h5 class="f-w-600 mb-3">{{'Shops Related permission'|translate}} </h5>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'View Shop'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div
+                                                            class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani9">
+                                                                <input class="radio_animated" id="edo-ani9" type="radio"
+                                                                formControlName="view_shop" name="view_shop" [value]=true>
+                                                                {{'Allow'|translate}}
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani10">
+                                                                <input class="radio_animated" id="edo-ani10"
+                                                                    type="radio" formControlName="view_shop" name="view_shop" [value]=false checked>
+                                                                    {{'Deny'|translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'Add Shop'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div
+                                                            class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani9">
+                                                                <input class="radio_animated" id="edo-ani9" type="radio"
+                                                                formControlName="add_shop" name="add_shop" [value]=true>
+                                                                {{'Allow'|translate}}
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani10">
+                                                                <input class="radio_animated" id="edo-ani10"
+                                                                    type="radio" formControlName="add_shop" name="add_shop" [value]=false checked>
+                                                                    {{'Deny'|translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'Update Shop'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div
+                                                            class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani11">
+                                                                <input class="radio_animated" id="edo-ani11"
+                                                                    type="radio" formControlName="update_shop" name="update_shop" [value]=true>
+                                                                    {{'Allow'|translate}}
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani12">
+                                                                <input class="radio_animated" id="edo-ani12"
+                                                                    type="radio" formControlName="update_shop" name="update_shop" [value]=false checked>
+                                                                    {{'Deny'|translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'Delete Shop'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div
+                                                            class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani13">
+                                                                <input class="radio_animated" id="edo-ani13"
+                                                                    type="radio" formControlName="delete_shop" name="delete_shop" [value]=true>
+                                                                    {{'Allow'|translate}}
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani14">
+                                                                <input class="radio_animated" id="edo-ani14"
+                                                                    type="radio" formControlName="delete_shop" name="delete_shop" [value]=false checked>
+                                                                    {{'Deny'|translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="attribute-blocks">
+                                                <h5 class="f-w-600 mb-3">{{'Customers Related permission'|translate}} </h5>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'View Customer'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div
+                                                            class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani9">
+                                                                <input class="radio_animated" id="edo-ani9" type="radio"
+                                                                formControlName="view_customer" name="view_customer" [value]=true>
+                                                                {{'Allow'|translate}}
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani10">
+                                                                <input class="radio_animated" id="edo-ani10"
+                                                                    type="radio" formControlName="view_customer" name="view_customer" [value]=false checked>
+                                                                    {{'Deny'|translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               
+                                                
+                                            </div>
+                                            <div class="attribute-blocks">
+                                                <h5 class="f-w-600 mb-3">{{'Coupons Related permission'|translate}} </h5>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'Add Coupon'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div
+                                                            class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani9">
+                                                                <input class="radio_animated" id="edo-ani9" type="radio"
+                                                                formControlName="add_coupon" name="add_coupon" [value]=true>
+                                                                {{'Allow'|translate}}
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani10">
+                                                                <input class="radio_animated" id="edo-ani10"
+                                                                    type="radio" formControlName="add_coupon" name="add_coupon" [value]=false checked>
+                                                                    {{'Deny'|translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'Delete Coupon'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div
+                                                            class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani13">
+                                                                <input class="radio_animated" id="edo-ani13"
+                                                                    type="radio" formControlName="delete_coupon" name="delete_coupon" [value]=true>
+                                                                    {{'Allow'|translate}}
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani14">
+                                                                <input class="radio_animated" id="edo-ani14"
+                                                                    type="radio" formControlName="delete_coupon" name="delete_coupon" [value]=false checked>
+                                                                    {{'Deny'|translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="attribute-blocks">
+                                                <h5 class="f-w-600 mb-3">{{'Settings Related permission'|translate}} </h5>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'Update Settings'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div
+                                                            class="form-group m-checkbox-inline mb-0 custom-radio-ml d-flex radio-animated">
+                                                            <label class="d-block" for="edo-ani9">
+                                                                <input class="radio_animated" id="edo-ani9" type="radio"
+                                                                formControlName="update_setting" name="update_setting" [value]=true>
+                                                                {{'Allow'|translate}}
+                                                            </label>
+                                                            <label class="d-block" for="edo-ani10">
+                                                                <input class="radio_animated" id="edo-ani10"
+                                                                    type="radio" formControlName="update_setting" name="update_setting" [value]=false checked>
+                                                                    {{'Deny'|translate}}
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                              
+                                                
+                                            </div>
+                                        </div>
+                                    </form>
+                                </ng-template>
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
+                    <div class="pull-right">
+                        <div class="form-group has-danger">
+                            <div class="form-control-feedback">
+                              {{ registerErrors }}
+                            </div>
+                          </div>
+                        <button type="button" class="btn btn-primary" (click)="addUser()">{{'Save'|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->

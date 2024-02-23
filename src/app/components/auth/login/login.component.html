@@ -1,0 +1,38 @@
+<div class="account-content">
+    <div class="container">
+    
+        <!-- Account Logo -->
+        <div class="account-logo">
+            <a href="javascript:"><img src="assets/images/dashboard/logo.png" alt="bestway4u"></a>
+        </div>
+        <!-- /Account Logo -->
+        
+        <div class="account-box">
+            <div class="account-wrapper">
+                <h3 class="account-title">{{'Login'|translate}}</h3>
+                <p class="account-subtitle" *ngIf="!loginInvalid">{{'Access to our dashboard'|translate}}</p>
+                <p *ngIf="loginInvalid" class="text-error">{{'you can't Access to dashboard'|translate}} </p>
+                <!-- Account Form -->
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label>{{'Email'|translate}}</label>
+                        <input class="form-control" type="text" formControlName="username">
+                    </div>
+                    <div class="form-group">
+
+                         
+                        <label>{{'Password'|translate}}</label>
+                         
+                        <input class="form-control" type="password" formControlName="password">
+                    </div>
+                    <div class="form-group text-center submit-section">
+                        <button class="btn btn-primary account-btn" type="submit" >{{'Login'|translate}}</button>
+                    </div>
+                   
+                </form>
+                <!-- /Account Form -->
+                
+            </div>
+        </div>
+    </div>
+</div>

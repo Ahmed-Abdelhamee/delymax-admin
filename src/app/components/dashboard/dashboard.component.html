@@ -1,0 +1,195 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-3 col-md-6 xl-50">
+            <div class="card o-hidden widget-cards">
+                <div class="bg-warning card-body">
+                    <div class="media static-top-widget row">
+                        <div class="icons-widgets col-4">
+                            <div class="align-self-center text-center">
+                                <app-feather-icons [icon]="'navigation'" class="font-warning"></app-feather-icons>
+                            </div>
+                        </div>
+                        <div class="media-body col-6"><span >{{'All Orders Today'|translate}}</span>
+                            <h3 ><span class="counter" [CountTo]="allOrdersToday?.length" [from]="0"
+                                    [duration]="2">{{allOrdersToday?.length}} </span> <small> {{'Order'|translate}}</small> </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 xl-50">
+            <div class="card o-hidden  widget-cards">
+                <div class="bg-secondary card-body">
+                    <div class="media static-top-widget row">
+                        <div class="icons-widgets col-4">
+                            <div class="align-self-center text-center">
+                                <app-feather-icons [icon]="'box'" class="font-secondary"></app-feather-icons>
+                            </div>
+                        </div>
+                        <div class="media-body col-8"><span class="m-0">{{'All Payments Today'|translate}}</span>
+                            <h3 class="mb-0"><span class="counter" >{{allPaymentsToday| number : '1.2-2'}} </span> <small> {{'EGP'|translate}}</small>  </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 xl-50">
+            <div class="card o-hidden widget-cards">
+                <div class="bg-primary card-body">
+                    <div class="media static-top-widget row">
+                        <div class="icons-widgets col-4">
+                            <div class="align-self-center text-center">
+                                <app-feather-icons [icon]="'navigation'" class="font-warning"></app-feather-icons>
+                            </div>
+                        </div>
+                        <div class="media-body col-8"><span class="m-0">{{'Today New Orders'|translate}}</span>
+                            <h3 class="mb-0"><span class="counter" [CountTo]="newOrdersToday.length" [from]="0"
+                                    [duration]="2">{{newOrdersToday.length}} </span> <small> {{'Order'|translate}}</small></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 xl-50">
+            <div class="card o-hidden widget-cards">
+                <div class="bg-danger card-body">
+                    <div class="media static-top-widget row">
+                        <div class="icons-widgets col-4">
+                            <div class="align-self-center text-center">
+                                <app-feather-icons [icon]="'box'" class="font-secondary"></app-feather-icons>
+                            </div>
+                        </div>
+                        <div class="media-body col-8"><span class="m-0">{{'Today Delivered Orders'|translate}}</span>
+                            <h3 class="mb-0"><span class="counter" [CountTo]="deliveredOrdersToday.length" [from]="0"
+                                    [duration]="2">{{deliveredOrdersToday.length}} </span> <small>{{'Order'|translate}}</small></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+    <div class="row">
+        <div class="col-xl-3 col-md-6 xl-50">
+            <div class="card o-hidden widget-cards">
+                <div class="bg-warning card-body">
+                    <div class="media static-top-widget row">
+                        <div class="icons-widgets col-4">
+                            <div class="align-self-center text-center">
+                                <app-feather-icons [icon]="'navigation'" class="font-warning"></app-feather-icons>
+                            </div>
+                        </div>
+                        <div class="media-body col-6"><span >{{'All Orders'|translate}}</span>
+                            <h3 ><span class="counter" [CountTo]="allOrders?.length" [from]="0"
+                                    [duration]="2">{{allOrders?.length}} </span> <small> {{'Order'|translate}}</small></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 xl-50">
+            <div class="card o-hidden  widget-cards">
+                <div class="bg-secondary card-body">
+                    <div class="media static-top-widget row">
+                        <div class="icons-widgets col-4">
+                            <div class="align-self-center text-center">
+                                <app-feather-icons [icon]="'box'" class="font-secondary"></app-feather-icons>
+                            </div>
+                        </div>
+                        <div class="media-body col-8"><span class="m-0">{{'All Payments'|translate}}</span>
+                            <h3 class="mb-0"><span class="counter" >{{allPayments| number : '1.2-2'}} </span> <small> {{'EGP'|translate}}</small>  </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 xl-50">
+            <div class="card o-hidden widget-cards">
+                <div class="bg-primary card-body">
+                    <div class="media static-top-widget row">
+                        <div class="icons-widgets col-4">
+                            <div class="align-self-center text-center">
+                                <app-feather-icons [icon]="'navigation'" class="font-warning"></app-feather-icons>
+                            </div>
+                        </div>
+                        <div class="media-body col-8"><span class="m-0">{{'This month orders'|translate}}</span>
+                            <h3 class="mb-0"><span class="counter" [CountTo]="thisMonthOrders.length" [from]="0"
+                                    [duration]="2">{{thisMonthOrders.length}} </span> <small> {{'Order'|translate}}</small></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 xl-50">
+            <div class="card o-hidden widget-cards">
+                <div class="bg-danger card-body">
+                    <div class="media static-top-widget row">
+                        <div class="icons-widgets col-4">
+                            <div class="align-self-center text-center">
+                                <app-feather-icons [icon]="'box'" class="font-secondary"></app-feather-icons>
+                            </div>
+                        </div>
+                        <div class="media-body col-8"><span class="m-0">{{'This month payments'|translate}}</span>
+                            <h3 class="mb-0"><span class="counter" >{{thisMonthPayments| number : '1.2-2'}} </span> <small> {{'EGP'|translate}}</small> </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 xl-50">
+            <div class="card o-hidden widget-cards">
+                <div class="bg-success card-body">
+                    <div class="media static-top-widget row">
+                        <div class="icons-widgets col-4">
+                            <div class="align-self-center text-center">
+                                <app-feather-icons [icon]="'users'" class="font-warning"></app-feather-icons>
+                            </div>
+                        </div>
+                        <div class="media-body col-6"><span >{{'Customers'|translate}}</span>
+                            <h3 ><span class="counter" [CountTo]="customers?.length" [from]="0"
+                                    [duration]="2">{{customers?.length}} </span> <small></small></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-12 xl-100">
+            <div class="card">
+                <div class="card-header">
+                    <h5>{{'Latest Orders'|translate}}</h5>
+                </div>
+                <div class="card-body">
+                    <div class="user-status table-responsive latest-order-table">
+                        <table class="table table-bordernone">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th scope="col">{{'Order ID'|translate}}</th>
+                                    <th scope="col">{{'Total'|translate}}</th>
+                                    <th scope="col">{{'Order Type '|translate}}</th>
+                                    <th scope="col">{{'Status'|translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let order of lastOrders; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td><a routerLink = "/sales/view-order" [queryParams]="{id: order?.orderId}">{{order?.orderId}}</a></td>
+                                    <td class="digits">{{order?.totalAmount | number : '1.2-2'}} {{'EGP'}}</td>
+                                    <td class="font-danger">{{order?.type |orderType|translate}}</td>
+                                    <td class="digits">{{order?.status | customStatus |translate}}</td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                        <a href="javascript:void(0)" class="btn btn-primary" routerLink = "/sales/orders" >{{'View All Orders'|translate}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+</div>
+<!-- Container-fluid Ends-->

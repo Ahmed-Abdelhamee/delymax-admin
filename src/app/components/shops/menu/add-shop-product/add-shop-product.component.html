@@ -1,0 +1,204 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row product-adding">
+                        <div class="col-xl-5">
+                            <div class="add-product">
+                                <div class="row">
+                                    <div class="col-xl-9 xl-50 col-sm-6 col-9">
+                                        <img [src]="image" alt="" class="img-fluid image_zoom_1">
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-7">
+                            <form class="needs-validation" [formGroup]="productForm" (ngSubmit)="onProductFormSubmit()">
+                                <div class="add-product-form">
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Name :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="text" [formControl]="productForm.controls['title']" required>
+                                        <div *ngIf="productForm.controls.title.touched && productForm.controls.title.errors?.required"
+                                            class="text text-danger">
+                                            {{'Title Name is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Name (EN):'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="text" [formControl]="productForm.controls['title_En']" required>
+                                        <div *ngIf="productForm.controls.title_En.touched && productForm.controls.title_En.errors?.required"
+                                            class="text text-danger">
+                                            {{'Title Name (EN) is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Images :'|translate}}</label>
+                                            <input class="form-control col-xl-8 col-sm-7" type="file" 
+                                             placeholder="{{'Enter Image'|translate}}" id="photo"  (change)="onFileChange($event)"  #photos required multiple>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom03" class="col-xl-3 col-sm-4 mb-0">{{'Discount :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom03"
+                                            type="number" formControlName="discount" required="" value="0">
+                                        <div *ngIf="productForm.controls.discount.touched && productForm.controls.discount.errors?.required"
+                                            class="text text-danger">
+                                            {{'Product'|translate}} <Code></Code> {{'is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0">{{'Category :'|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="category">
+                                            <option *ngFor="let category of categories" [value]="category.id">
+                                                {{category.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0">{{'Type :'|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="brand">
+                                            <option *ngFor="let type of types" [value]="type.id">
+                                                {{type.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-sm-4 mb-0">{{'Description :'|translate}}</label>
+                                        <textarea class="form-control col-xl-8 col-sm-7 mb-0" rows="3" name="description"
+                                         formControlName="description"></textarea>
+                                         <div *ngIf="productForm.controls.description.touched && productForm.controls.description.errors?.required"
+                                            class="text text-danger">
+                                            {{'Product description is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-sm-4 mb-0">{{'Description (EN):'|translate}}</label>
+                                        <textarea class="form-control col-xl-8 col-sm-7 mb-0" rows="3" name="description"
+                                         formControlName="description_En"></textarea>
+                                         <div *ngIf="productForm.controls.description_En.touched && productForm.controls.description_En.errors?.required"
+                                            class="text text-danger">
+                                            {{'Product description (EN) is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row" >
+                                        <label class="col-xl-3 col-sm-4 mb-0">{{'Price :'|translate}}</label>
+                                        <select class="form-control digits col-xl-3 col-sm-2"
+                                                id="exampleFormControlSelect2"  [(ngModel)]= "addSize" [ngModelOptions]="{standalone: true}">
+                                                <option *ngFor="let unit of units" [ngValue]="unit">
+                                                    {{unit.unit}}
+                                                </option>
+                                        </select>
+                                        <!--<input class="form-control col-xl-3 col-sm-2" [(ngModel)] = "addSize" style="margin: 5px;" type="text"  placeholder="{{'Enter size'|translate}} " name="addSize" [ngModelOptions]="{standalone: true}" >-->
+                                        <input class="form-control col-xl-3 col-sm-2 " [(ngModel)] = "addPrice" style="margin: 5px;" type="number"  placeholder="{{'Enter price'|translate}} " name="addSize"  [ngModelOptions]="{standalone: true}">
+                                        <a (click)="addItems()" class="btn btn-primary mr-1" style="margin: 5px;" >
+                                            {{'ADD'|translate}}
+                                        </a>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom02" class="col-xl-3 col-sm-4 mb-0"></label>
+                                        <div class="col-xl-6 col-sm-6 mb-0">
+                                            <table class="table table-hover table-white" *ngIf="priceList">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 20px">#</th>
+                                                        <th class="col-sm-3">{{'Size'|translate}}</th>
+                                                        <th style="width:100px;">{{'Price'|translate}}</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                  <tbody>
+                                                    <tr  *ngFor="let item of priceList; let i=index" >
+                                                            <td>{{i+1}}</td>
+                                                            <td>
+                                                                <label >{{item.unit}}</label>
+                                                            </td>
+                                                            <td>
+                                                                <label >{{item.price}}</label>
+                                                            </td>
+                                                            <td >
+                                                                <a (click)="removeItems(i)" class="text-danger font-18" title="Remove">
+                                                                    <i class="fa fa-trash-o"></i>
+                                                                </a>
+                                                            </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="shop.type=='2'"  class="form-group row" >
+                                        <label class="col-xl-3 col-sm-4 mb-0">{{'Sides :'|translate}}</label>
+                                        <select class="form-control digits col-xl-3 col-sm-2"
+                                                id="exampleFormControlSelect2"  [(ngModel)]= "addSideSize" [ngModelOptions]="{standalone: true}">
+                                                <option *ngFor="let size of sizes" [ngValue]="size">
+                                                    {{size.unit}}
+                                                </option>
+                                            </select>
+                                        <select class="form-control digits col-xl-3 col-sm-2"
+                                            id="exampleFormControlSelect2"  [(ngModel)]= "selectedSide" (change)="addSdName()" [ngModelOptions]="{standalone: true}">
+                                            <option  value="">{{'select side'|translate}}</option>
+                                            <option *ngFor="let side of mainSides" [ngValue]="side">
+                                                {{side.name}}
+                                            </option>
+                                        </select>
+                                        <a (click)="addSide()" class="btn btn-primary mr-1" style="margin: 5px;" >
+                                            {{'ADD'|translate}}
+                                        </a>
+                                    </div>
+                                    <div *ngIf="shop.type=='2'" class="form-group row">
+                                        <label for="validationCustom02" class="col-xl-3 col-sm-4 mb-0"></label>
+                                        <div class="col-xl-8 col-sm-7 mb-0">
+                                            <table class="table table-hover table-white" *ngIf="sides">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 20px">#</th>
+                                                        <th class="col-sm-4">{{'Size'|translate}}</th>
+                                                        <th class="col-sm-4">{{'Name'|translate}}</th>
+                                                        <th style="width:100px;">{{'Price'|translate}}</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                  <tbody>
+                                                    <tr  *ngFor="let item of sides; let i=index" >
+                                                            <td>{{i+1}}</td>
+                                                            <td>
+                                                                <label >{{(units|unitNamePipe:item.size)}}</label>
+                                                            </td>
+                                                            <td>
+                                                                <label >{{item.name}}</label>
+                                                            </td>
+                                                            <td>
+                                                                <label >{{item.price}}</label>
+                                                            </td>
+                                                            <td >
+                                                                <a (click)="removeSide(i)" class="text-danger font-18" title="Remove">
+                                                                    <i class="fa fa-trash-o"></i>
+                                                                </a>
+                                                            </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="form-group row mb-0">
+                                <div class="product-buttons col-sm-8 offset-xl-3 offset-sm-4">
+                                    <button type="submit" class="btn btn-primary mr-1" (click)="onProductFormSubmit()">{{'Add'|translate}}</button>
+                                    <button type="button" class="btn btn-light">{{'Discard'|translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->

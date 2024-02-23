@@ -1,0 +1,74 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                
+                <div class="card-body">
+                    <div  class="btn-popup pull-right">
+                        <button type="button" class="btn btn-primary"  routerLink = "/companies/add-wearhouse">{{'Add Wearhouse'|translate}}</button>
+                       
+                    </div>
+                    <div id="batchDelete" class="category-table custom-datatable">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="datatable"
+                            class="table table-striped custom-table datatable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>{{'Name'|translate}}</th>
+                                    <th>{{'Company'|translate}}</th>
+                                    <th>{{'Address'|translate}}</th>
+                                    <th>{{'phone'|translate}}</th>
+                                    <th>{{'Contact person'|translate}}</th>
+                                    <th>{{'CP Phone'|translate}}</th>
+                                    <th>{{'CP Position'|translate}}</th>
+                                    <th>{{'Open From'|translate}}</th>
+                                    <th>{{'Open To'|translate}}</th>
+                                    <th>{{'Actions'|translate}}</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let order of orders; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td><a routerLink = "/companies/view-wearhouse" [queryParams]="{id: order?.id}">{{order?.name}}</a></td>
+                                    <td>{{order?.companyID | customStatus |translate}}</td>
+                                    <td>{{order?.address}}</td>
+                                    <td>{{order?.phoneNumber1}}</td>
+                                    <td>{{order?.contact_person_name}}</td>
+                                    <td>{{order?.contact_person_phone_number1}}</td>
+                                    <td>{{order?.contact_position}}</td>
+                                    <td>{{order?.open_from}}</td>
+                                    <td>{{order?.open_To}}</td>
+                                    <td class="text-right" >
+                                        <div class="dropdown dropdown-action">
+                                            <a class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item"  data-toggle="modal"
+                                                data-target="#edit_leavetype" (click)="onEdit(order.id)"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                                                <a class="dropdown-item" 
+                                                    (click)="onDeleteConfirm(order)"><i class="fa fa-trash-o m-r-5"></i>
+                                                    Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    
+                                </tr>
+                                <tr *ngIf="orders.length === 0">
+                                    <td colspan="10">
+                                        <h5 style="text-align: center;">No data found</h5>
+                                    </td>
+                                   
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->

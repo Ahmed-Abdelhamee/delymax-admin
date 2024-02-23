@@ -1,0 +1,83 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                
+                <div class="card-body">
+                    
+                    <div id="batchDelete" class="category-table custom-datatable">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="datatable"
+                            class="table table-striped custom-table datatable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>{{'Route ID'|translate}}</th>
+                                    <th>{{'Date'|translate}}</th>
+                                    <th>{{'Name'|translate}}</th>
+                                 
+                                    <th class="text-right">{{'Action'|translate}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let order of orders; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td><a routerLink = "/import/view-route" [queryParams]="{id: order?.id}">{{order?.id}}</a></td>
+                                    <td>{{order?.date|date}}</td>
+                                    <td>{{order?.name}}</td>
+                                    <td class="text-right">
+                                        <div class="dropdown dropdown-action">
+                                            <a class="action-icon dropdown-toggle" data-toggle="dropdown"
+                                                aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                
+                                                <a *ngIf="canDelete" class="dropdown-item" data-toggle="modal" data-target="#delete_order"
+                                                    (click)="tempId = order.orderId"><i class="fa fa-trash-o m-r-5"></i>
+                                                    Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="orders.length === 0">
+                                    <td colspan="10">
+                                        <h5 style="text-align: center;">No data found</h5>
+                                    </td>
+                                   
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+<!-- Delete Client Modal -->
+<div class="modal custom-modal fade" id="delete_order" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>{{'Delete Order'|translate}}</h3>
+                    <p>{{'Are you sure want to delete?'|translate}}</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <a  class="btn btn-primary continue-btn"
+                                (click)="onDelete()">{{'Delete'|translate}}</a>
+                        </div>
+                        <div class="col-6">
+                            <a  data-dismiss="modal"
+                                class="btn btn-primary cancel-btn">{{'Cancel'|translate}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Client Modal -->

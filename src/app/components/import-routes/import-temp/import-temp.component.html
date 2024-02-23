@@ -1,0 +1,174 @@
+<!-- Container-fluid starts-->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+               
+                <div class="card-body">
+                    <div class="row product-adding">
+                        
+                        <div class="col-xl-7">
+                          
+                            <form class="needs-validation" [formGroup]="tempForm" (ngSubmit) = "onAddTemp()">
+                                <div class="add-product-form">
+                                  
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-sm-4">{{'File :'|translate}}</label>
+                                        <div class="col-xl-8 col-sm-7 pl-0 description-sm">
+                                            <input class="form-control" type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)" accept=".csv">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Templete Name'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="text" [formControl]="tempForm.controls['name']" required>
+                                        <div *ngIf="tempForm.controls.name.touched && tempForm.controls.name.errors?.required"
+                                            class="text text-danger">
+                                            {{'Name is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'Id'|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="field1">
+                                            <option *ngFor="let item of headers;let i = index" [value]="i">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'First Name'|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="field2">
+                                            <option *ngFor="let item of headers;let i = index" [value]="i">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'Last Name'|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="field3">
+                                            <option *ngFor="let item of headers;let i = index" [value]="i">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'Address '|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="field4">
+                                            <option *ngFor="let item of headers;let i = index" [value]="i">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                  
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'Postal Code '|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="field5">
+                                            <option *ngFor="let item of headers;let i = index" [value]="i">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'Appt No. '|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="field6">
+                                            <option *ngFor="let item of headers;let i = index" [value]="i">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                  
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'Phone '|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="field7">
+                                            <option *ngFor="let item of headers;let i = index" [value]="i">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'Type '|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="field8">
+                                            <option *ngFor="let item of headers;let i = index" [value]="i">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'Discription '|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="field9">
+                                            <option *ngFor="let item of headers;let i = index" [value]="i">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                  
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'Items Count '|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="field10">
+                                            <option *ngFor="let item of headers;let i = index" [value]="i">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'Collection Amount '|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="field11">
+                                            <option *ngFor="let item of headers;let i = index" [value]="i">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'Delivery Date '|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="field12">
+                                            <option *ngFor="let item of headers;let i = index" [value]="i">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'Barcode '|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="field13">
+                                            <option *ngFor="let item of headers;let i = index" [value]="i">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                  
+                                  
+                                </div>
+                            </form>
+                           
+                            <div class="form-group row mb-0">
+                                <div class="product-buttons col-sm-8 offset-xl-3 offset-sm-4">
+                                    <button  type="submit" class="btn btn-primary" (click)="onAddTemp()" class="btn btn-primary mr-1">{{'Add'|translate}}</button>
+                                    <button type="button" class="btn btn-light">{{'Discard'|translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+

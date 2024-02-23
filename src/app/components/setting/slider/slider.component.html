@@ -1,0 +1,41 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="col">
+                <h3 class="page-title">{{'Slider'|translate}}</h3>
+                
+            </div>
+            <div class="card tab2-card">
+                <div class="card-body">
+                    <ngb-tabset class="tab-coupon profile-tabs">
+                        <ngb-tab>
+                            <ng-template ngbTabTitle>العربية</ng-template>
+                            <ng-template ngbTabContent>
+                              
+             
+                                    
+                                        <app-ar-sliders></app-ar-sliders>
+                                   
+                               
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab>
+                            <ng-template ngbTabTitle>English</ng-template>
+                            <ng-template ngbTabContent>
+
+             
+                                   
+                                        <app-en-sliders></app-en-sliders>
+                                    
+                            
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+</div>
+<!-- Container-fluid Ends-->

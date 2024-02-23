@@ -1,0 +1,13 @@
+<div class="container-fluid" >
+    <div class="row">
+      <div class="col-xl-12">  
+      <div  style="background-color: #ff5a00; padding: 5px;" class="text-center">
+          <h6 class="text-white">{{'Delivey Boys '|translate}} </h6>
+          
+      </div>
+      <ul class="order-detail text-center">
+        <li *ngFor="let db of hour | keyvalue"><a routerLink = "/delivery/view-delivery-boy" [queryParams]="{id: db.key}" target="_blank" >{{ dBoys|dBoyNamePipe:db.key}} </a></li>
+      </ul>
+      </div>
+</div>
+</div>

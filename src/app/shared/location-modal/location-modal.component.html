@@ -1,0 +1,57 @@
+<!-- Add to cart modal popup start-->
+<ng-template #locationModal let-modal>
+    <div class="modal-body">
+        <div class="container-fluid p-0">
+            <div class="row">
+                <div class="col-12">
+                    <div class="modal-bg addtocart">
+                        <button type="button" id="close-cart-modal" class="close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="media-body align-self-center text-center">
+                            <h3 class="text-center">{{'Distance : '|translate}} {{distance | number : '1.2-2'}} {{'Km'|translate}}</h3>
+                        </div>
+                      
+                        <div class="media">
+             
+                            <div  class="col-md-12">
+                                <div class="form-group col-md-12 col-sm-12 col-xs-12">  
+                                    <div class="col-md-12">
+                                        <agm-map appDirectionsMap [showDirection]="displayDirections"
+                                        [origin]="origin"
+                                        [destination]="destination"
+                                        [zoom]="zoom"
+                                        [disableDefaultUI]="false">
+                                         <agm-marker
+                                         [latitude]="origin.latitude"
+                                         [longitude]="origin.longitude"
+                                         [iconUrl] ="shopIcon">
+                                        </agm-marker>
+                                        <agm-marker
+                                        [latitude]="destination.latitude"
+                                        [longitude]="destination.longitude"
+                                        [iconUrl] ="userIcon">
+                                       </agm-marker>
+                                    </agm-map>
+                                    </div>
+                                </div>
+                            
+
+                                
+                            </div>
+                          
+                            <div class="buttons">
+                                <a (click)="modal.dismiss('Cross click')" class="view-cart btn btn-solid">{{'back'|translate}}</a>
+                                
+                            </div>
+                            
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+</ng-template>
+<!-- Add to cart modal popup end-->

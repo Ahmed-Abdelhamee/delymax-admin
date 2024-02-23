@@ -1,0 +1,92 @@
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="card">
+        <div class="card-body">
+            <div >
+                <div class="map" fxFlex="1 1 100%" #map>
+                  
+                     <agm-map [latitude]="options.lat" [longitude]="options.lng" [zoom]="options.zoom" [agmDrawingManager]="drawing"  (mapReady)="onMapReady($event)" (mapClick)="mapClicked($event)" fullscreenControl="true" #agmMap>
+                                                     
+                     <agm-marker *ngFor="let db of markers" [latitude]="db.lat" [longitude]="db.lng" [markerDraggable]="false"  [iconUrl] ="dbIcon" [label]="db.title" [visible]="db.visible"
+                     ></agm-marker>
+                     <agm-drawing-manager #drawing="agmDrawingManager" (polygonComplete)="polygonCreated($event)" data-target="#create_route" (overlayComplete)="extractPolygonPoints($event)"  [drawingControl]="managerOptions.drawingControl" [drawingControlOptions]="managerOptions.drawingControlOptions"
+                     [polygonOptions]='managerOptions.polygonOptions' [drawingMode]='managerOptions.drawingMode'>
+                   </agm-drawing-manager>
+                   </agm-map>
+                 </div>
+             </div>
+            <div id="batchDelete" class="category-table custom-datatable">
+                <div class="table-responsive">
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="datatable"
+                    class="table table-striped custom-table datatable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>{{'Id'|translate}}</th>
+                            <th>{{'Name'|translate}}</th>
+                            <th>{{'Address'|translate}}</th>
+                            <th>{{'Postal Code'|translate}}</th>
+                            <th>{{'Appt No.'|translate}}</th>
+                            <th>{{'Phone'|translate}}</th>
+                            <th>{{'Items Qty'|translate}}</th>
+                            <th>{{'Delivery Date'|translate}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of records; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{item?.id }}</td>
+                            <td>{{item?.customerName}}</td>
+                            <td>{{item?.customerAddress}}</td>
+                            <td>{{item?.zipCode}}</td>
+                            <td>{{item?.apptNo}}</td>
+                            <td>{{item?.customerPhone}}</td>
+                            <td>{{item?.jops}}</td>
+                            <td>{{item?.date}}</td> 
+                        </tr>
+                        <tr *ngIf="records.length === 0">
+                            <td colspan="10">
+                                <h5 style="text-align: center;">{{'No data found'|translate}}</h5>
+                            </td>
+                           
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+                      
+     </div>   
+</div>
+<!-- Container-fluid Ends-->
+<!-- Delete Client Modal -->
+<div class="modal custom-modal fade" id="create_route" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header">
+                    <h3>{{'Create Route'|translate}}</h3>
+                    <p>Are you  want to Create Route with {{selectedPoints.length}} Jop?</p>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <a  class="btn btn-primary continue-btn"
+                                (click)="AddData()">{{'Create'|translate}}</a>
+                        </div>
+                        <div class="col-6">
+                            <a  data-dismiss="modal"
+                                class="btn btn-primary cancel-btn" (click)="onCancel()" >{{'Cancel'|translate}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Delete Client Modal -->

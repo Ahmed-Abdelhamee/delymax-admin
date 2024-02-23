@@ -1,0 +1,78 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card tab2-card">
+                <div class="card-body">
+                                <div class="card">
+             
+                                    <div class="card-body">
+                                        <div *ngIf="allZone" class="btn-popup pull-right">
+                                            <button type="button" class="btn btn-primary"  routerLink = "/shops/add-shop">{{'Add Shop'|translate}}</button>
+                                           
+                                        </div>
+                                        <div id="batchDelete" class="category-table custom-datatable">
+    <div class="table-responsive">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="datatable"
+        class="table table-striped custom-table datatable">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>{{'Image'|translate}}</th>
+                <th>{{'Name'|translate}}</th>
+                <th>{{'Type'|translate}}</th>
+                <th>{{'View'|translate}}</th>
+                <th class="text-right " style="max-width: 50px;">{{'Action'|translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let shop of shops; let i = index">
+                <td>{{i+1}}</td>
+                <td><img src="{{shop?.image}}" alt="Smiley face" height="50" width="50"></td>
+                <td><a routerLink = "/shops/view-shop" [queryParams]="{id: shop?.shopId}">{{shop?.name}}</a></td>
+                <td>{{shop?.type|shopTypePipe|translate}}</td>
+                <td>
+                    <mat-slide-toggle
+                    class="example-margin"
+                    color="warn"
+                    (change)="isShopView($event,shop.shopId)"
+                   [checked]="shop?.view=='1'"
+                  >
+                  </mat-slide-toggle>
+                </td>
+                <td class="text-right" >
+                    <div class="dropdown dropdown-action">
+                        <a class="action-icon dropdown-toggle" data-toggle="dropdown"
+                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item"  data-toggle="modal"
+                            data-target="#edit_leavetype" (click)="onEdit(shop.shopId)"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                            <a *ngIf="canDelete" class="dropdown-item" 
+                                (click)="onDeleteConfirm(shop)"><i class="fa fa-trash-o m-r-5"></i>
+                                Delete</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr *ngIf="shops.length === 0">
+                <td colspan="10">
+                    <h5 style="text-align: center;">No data found</h5>
+                </td>
+               
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+                                    </div>
+                                </div>
+                           
+                </div>
+            </div>
+        </div>
+      
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+

@@ -1,0 +1,48 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                
+                <div class="card-body">
+                    
+                    <div id="batchDelete" class="category-table custom-datatable">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="datatable"
+                            class="table table-striped custom-table datatable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>{{'Date'|translate}}</th>
+                                    <th>{{'Type'|translate}}</th>
+                                    <th>{{'By'|translate}}</th>
+                                    <th>{{'Amount'|translate}}</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let order of orders; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{order?.time | date: 'yyyy-MM-dd hh:mm a'}}</td>
+                                    <td><a *ngIf="order?.type == 'collect'" style="color: crimson;">{{order.type|translate}}</a><a *ngIf="order?.type == 'add'" style="color: rgb(58, 189, 7);">{{order.type|translate}}</a></td>
+                                    <td *ngIf="order?.clientId != 'admin'"><a  routerLink = "/customers/view-customer" [queryParams]="{id: order?.clientId}">{{ order?.clientName }}</a></td>
+                                    <td *ngIf="order?.clientId == 'admin'"> {{'Admin'|translate}} </td>
+                                    <td>{{order?.amount| number : '1.2-2'}}</td>
+                                    
+                                </tr>
+                                <tr *ngIf="orders.length === 0">
+                                    <td colspan="10">
+                                        <h5 style="text-align: center;">No data found</h5>
+                                    </td>
+                                   
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->

@@ -1,0 +1,158 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <button data-toggle="modal"
+            data-target="#progress" class="btn btn-primary" data-backdrop="static" id="dialog" hidden ></button>
+            <div class="card">
+               
+                <div class="card-body add-shop">
+                    <div class="row product-adding">
+                        
+                        <div class="col-xl-12">
+                          
+                            <form class="needs-validation" [formGroup]="wearhouseForm" (ngSubmit)="onwearhouseFormSubmit()">
+                                <div class="add-product-form">
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0">{{'Company :'|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" [(ngModel)]= "selectedTown" formControlName="companyID" >
+                                            <option *ngFor="let company of companies" [value]="company.id">
+                                                {{company.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                  
+                                    
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Name :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="text" [formControl]="wearhouseForm.controls['name']" required>
+                                        <div *ngIf="wearhouseForm.controls.name.touched && wearhouseForm.controls.name.errors?.required"
+                                            class="text text-danger">
+                                            {{'Name is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Phone 1 :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="text" [formControl]="wearhouseForm.controls['phoneNumber1']" required>
+                                        <div *ngIf="wearhouseForm.controls.phoneNumber1.touched && wearhouseForm.controls.phoneNumber1.errors?.required"
+                                            class="text text-danger">
+                                            {{'Phone is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Phone 2 :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="text" [formControl]="wearhouseForm.controls['phoneNumber2']" >
+                                      
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Address :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="text" [formControl]="wearhouseForm.controls['address']" required>
+                                        <div *ngIf="wearhouseForm.controls.address.touched && wearhouseForm.controls.address.errors?.required"
+                                            class="text text-danger">
+                                            {{'Address is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Contact person name :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="text" [formControl]="wearhouseForm.controls['contact_person_name']" required>
+                                        <div *ngIf="wearhouseForm.controls.contact_person_name.touched && wearhouseForm.controls.contact_person_name.errors?.required"
+                                            class="text text-danger">
+                                            {{'Contact person name is required.'|translate}}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Contact person phone 1:'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="text" [formControl]="wearhouseForm.controls['contact_person_phone_number1']" required>
+                                        <div *ngIf="wearhouseForm.controls.contact_person_phone_number1.touched && wearhouseForm.controls.contact_person_phone_number1.errors?.required"
+                                            class="text text-danger">
+                                            {{'Contact person phone 1 is required.'|translate}}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Contact person phone 2:'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="text" [formControl]="wearhouseForm.controls['contact_person_phone_number2']" >
+                                     
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Contact position:'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="text" [formControl]="wearhouseForm.controls['contact_position']" required>
+                                     
+                                    </div>
+                                   
+                                    
+                                  
+                                    
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0">{{'Open Hour :'|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="open_from">
+                                            <option *ngFor="let hour of hours" [value]="hour.value">{{hour.name|translate}}</option>
+                                           
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0">{{'Close Hour :'|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="open_To">
+                                            <option *ngFor="let hour of hours" [value]="hour.value">{{hour.name|translate}}</option>
+                                        </select>
+                                    </div>
+                                  
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Longitude :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="number" [formControl]="wearhouseForm.controls['longitude']" required>
+                                        <div *ngIf="wearhouseForm.controls.longitude.touched && wearhouseForm.controls.longitude.errors?.required"
+                                            class="text text-danger">
+                                            {{'Longitude is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Latitude :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="number" [formControl]="wearhouseForm.controls['latitude']" required>
+                                        <div *ngIf="wearhouseForm.controls.latitude.touched && wearhouseForm.controls.latitude.errors?.required"
+                                            class="text text-danger">
+                                            {{'Latitude is required.'|translate}}
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                            </form>
+                           
+                            <div class="form-group row mb-0">
+                                <div class="product-buttons col-sm-8 offset-xl-3 offset-sm-4">
+                                    <button type="submit" class="btn btn-primary mr-1" (click)="onwearhouseFormSubmit()">{{'Add'|translate}}</button>
+                                    <button type="button" class="btn btn-light">{{'Discard'|translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+<!-- Container-fluid Ends-->
+<div class="modal custom-modal fade" id="progress" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+     <div class="progress-content modal-dialog-centered" >
+
+        <mat-spinner></mat-spinner>
+     
+      </div>
+       </div>
+   </div>

@@ -1,0 +1,74 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div *ngIf="allZone" class="row">
+                <div class="col-xl-5 col-sm-4 mb-0">
+                    <div class="form-group row ">
+                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'Town :'|translate}}</label>
+                     <select class="form-control digits col-xl-8 col-sm-7"
+                    id="exampleFormControlSelect2" [(ngModel)]= "selectedTown" (change)="getStates()">
+                    <option *ngFor="let town of towns" [value]="town.id" selected = "town.id == user.town">
+                        {{town.name}}
+                    </option>
+                </select>
+                    </div>
+                    
+                </div>
+                <div class="col-xl-5 col-sm-4 mb-0">
+                    <div class="form-group row ">
+                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'State :'|translate}}</label>
+                    <select class="form-control digits col-xl-8 col-sm-7"
+                        id="exampleFormControlSelect2" [(ngModel)]= "selectedState" (change)="getAllOrders()">
+                        <option *ngFor="let state of states" [value]="state.id"  selected = "state.id == user.state">
+                            {{state.name}}
+                        </option>
+                    </select>  
+                    </div>
+                    
+                </div>
+
+                <div class="col-xl-2 col-sm-2 mb-0">
+                    <button  (click)="reloadComponent()" class="btn btn-primary mr-1"  >
+                        {{'Reset'|translate}}
+                    </button>
+                    
+                </div>
+                
+               
+            </div>
+            <div class="form-group row">
+               
+            </div>
+            <ngb-tabset class="tab-coupon">
+                <ngb-tab title="{{'Orders'|translate}}">
+                    <ng-template ngbTabContent>                                                                                                                                        <div class="tab-pane fade active show" id="account" role="tabpanel"
+                                aria-labelledby="account-tab">
+                                <app-orders-board *ngIf="selectedState" [Allorders] = "Allorders"></app-orders-board>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab>
+                    <ng-template ngbTabTitle>{{'Map'|translate}}
+                        <ng-template ngbTabContent>
+                               <app-zone-delivery-boys-tracking *ngIf="selectedState" [stateId]="selectedState"></app-zone-delivery-boys-tracking> 
+                                
+                          
+                        </ng-template>
+                    </ng-template>
+                </ngb-tab>
+                <ngb-tab>
+                    <ng-template ngbTabTitle>{{'Chats'|translate}}
+                        <ng-template ngbTabContent>
+                               <app-zone-chat  *ngIf="selectedState" [stateId]="selectedState" ></app-zone-chat> 
+                                
+                          
+                        </ng-template>
+                    </ng-template>
+                </ngb-tab>
+            </ngb-tabset>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+

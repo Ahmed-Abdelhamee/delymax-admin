@@ -1,0 +1,99 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card tab2-card">
+                <div class="card-body">
+                    
+                                <div class="card">
+             
+                                    <div class="card-body">
+                                        <div class="btn-popup pull-right">
+                                            <button type="button" class="btn btn-primary"  routerLink = "/shops/add-shop-product" [queryParams]="{shopId:id}">{{'Add Product'|translate}}</button>
+                                           
+                                        </div>
+                                       <div id="batchDelete" class="category-table custom-datatable">
+    <div class="table-responsive">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="datatable"
+        class="table table-striped custom-table datatable">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>{{'Image'|translate}}</th>
+                <th>{{'Name'|translate}}</th>
+                <th>{{'Category'|translate}}</th>
+                <th>{{'Featured'|translate}}</th>
+                <th>{{'New'|translate}}</th>
+                <th>{{'View'|translate}}</th>
+                <th class="text-right">{{'Action'|translate}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of productsAR; let i = index">
+                <td>{{i+1}}</td>
+                <td><img src="{{product?.images[0]}}" alt="Smiley face" height="50" width="50"></td>
+                <td>{{product?.title}}</td>
+                <td>{{(categories | shopCategoryPipe:product?.category)}}</td>
+                <td>
+                    <mat-slide-toggle
+                    class="example-margin"
+                    color="warn"
+                    (change)="isFeaturedChanges($event,product.id)"
+                   [checked]="product?.featured"
+                  >
+                  </mat-slide-toggle>
+                   </td>
+                <td>
+                    <mat-slide-toggle
+                    class="example-margin"
+                    color="warn"
+                    (change)="isNewChanges($event,product.id)"
+                   [checked]="product?.new"
+                  >
+                  </mat-slide-toggle>
+                   </td>
+                   <td>
+                    <mat-slide-toggle
+                    class="example-margin"
+                    color="warn"
+                    (change)="isProductView($event,product.id)"
+                   [checked]="product?.view==true"
+                  >
+                  </mat-slide-toggle>
+                </td>
+                <td class="text-right">
+                    <div class="dropdown dropdown-action">
+                        <a class="action-icon dropdown-toggle" data-toggle="dropdown"
+                            aria-expanded="false"><i class="material-icons">more_vert</i></a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item"  data-toggle="modal"
+                            data-target="#edit_leavetype" (click)="onEdit(product.id)"><i class="fa fa-pencil m-r-5"></i> Edit</a>
+                            <a class="dropdown-item" 
+                                (click)="onDeleteConfirm(product)"><i class="fa fa-trash-o m-r-5"></i>
+                                Delete</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr *ngIf="productsAR.length === 0">
+                <td colspan="10">
+                    <h5 style="text-align: center;">No data found</h5>
+                </td>
+               
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+                                    </div>
+                                </div>
+                            
+                </div>
+            </div>
+        </div>
+      
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+
+

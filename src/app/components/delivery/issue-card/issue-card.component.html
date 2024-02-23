@@ -1,0 +1,51 @@
+<div class="issue-wrap">
+    <div (click)="openIssueModal(order.orderId)"
+         class="issue">
+         
+        <p class="text-textDarkest text-center">
+            {{ order.type|orderType|translate }}
+        </p>
+       
+        <p class="text-textDarkest text-center">
+            {{ order.orderId}}
+        </p>
+        <p class="text-textDarkest text-center"> {{timeLeft}} </p>
+       
+            <div class="row">
+                <div class="col"><h5 >
+                    {{'Order Time :'|translate}} {{order?.orderTime | date: 'hh:mm a'}}
+                </h5></div>
+                <div class="col"><h5 *ngIf="order?.prepareTime>0">
+                    {{'Accept Time :'|translate}} {{order?.prepareTime | date: 'hh:mm a'}}
+                </h5>
+                <h5 *ngIf="order?.prepareTime==0">
+                {{'Accept Time :'|translate}} --:--
+            </h5></div>
+            </div>
+            <div class="row">
+                <div class="col"><h5  *ngIf="order?.deliveryTime>0">
+                    {{'prepare Time :'|translate}} {{order?.deliveryTime | date: 'hh:mm a'}}
+                </h5><h5  *ngIf="order?.deliveryTime==0">
+                    {{'prepare Time :'|translate}} --:--
+                </h5></div>
+                <div class="col"><h5 *ngIf="order?.doneTime>0">
+                    {{'Delivery Time :'|translate}} {{order?.doneTime | date: 'hh:mm a'}}
+                </h5><h5 *ngIf="order?.doneTime==0">
+                    {{'Delivery Time :'|translate}} --:--
+                </h5></div>
+            </div>
+            
+        <div class="flex items-center justify-between">
+           
+            
+            <div class="flex items-center">
+                <svg-icon class="mr-1 text-textMedium"
+                          [name]="issueTypeIcon"
+                          [size]="20">
+                </svg-icon>
+
+           
+            </div>            
+        </div>
+    </div>
+</div>

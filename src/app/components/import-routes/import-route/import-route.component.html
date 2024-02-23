@@ -1,0 +1,126 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+               
+                <div class="card-body">
+                    <div class="row product-adding">
+                        
+                        <div class="col-xl-7">
+                          
+                            <form class="needs-validation"  (ngSubmit) = "AddData()">
+                                <div class="add-product-form">
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{' Route Name'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="text" [(ngModel)] ="routeName" [ngModelOptions]="{standalone: true}">
+                                        
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{' Select Template'|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" [(ngModel)] ="selectedTemp" [ngModelOptions]="{standalone: true}" (change)="tempSelected()" >
+                                            <option *ngFor="let temp of temps" [ngValue]="temp">
+                                                {{temp.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0">{{'Company '|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2"  [(ngModel)] ="selectedCompany" [ngModelOptions]="{standalone: true}" (change)="companySelected()" >
+                                            <option  value="">Select Compant</option>
+                                            <option *ngFor="let company of companies" [ngValue]="company.id">
+                                                {{company.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-sm-4">{{'File :'|translate}}</label>
+                                        <div class="col-xl-8 col-sm-7 pl-0 description-sm">
+                                            <input [disabled] = "!isSelectedTemp" class="form-control" type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)" accept=".csv">
+
+                                        </div>
+                                        
+                                    </div>
+                                    <div *ngIf="uploading" style="position: relative ;margin-bottom: 10px;">
+                                        <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+                                        <span style="position: absolute; top: 0.5em;" [ngStyle]="{'left': progress + '%'}">{{progress}}%</span>
+                                      </div>
+                                  
+                                </div>
+                            </form>
+                           
+                            <div class="form-group row mb-0">
+                               
+                                <div class="product-buttons col-sm-8 offset-xl-3 offset-sm-4">
+                                    <button [disabled] = "uploading||!selectedCompany||!selectedTemp||!routeName"  type="submit" class="btn btn-primary" (click)="onAddData()" class="btn btn-primary mr-1">{{'Add'|translate}}</button>
+                                    <button type="button" class="btn btn-light">{{'Discard'|translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                        <div class="card-body">
+                    
+                            <div id="batchDelete" class="category-table custom-datatable">
+                                <div class="table-responsive">
+                                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="datatable"
+                                    class="table table-striped custom-table datatable">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>{{'Id'|translate}}</th>
+                                            <th>{{'First Name'|translate}}</th>
+                                            <th>{{'Last Name'|translate}}</th>
+                                            <th>{{'Address'|translate}}</th>
+                                            <th>{{'Postal Code'|translate}}</th>
+                                            <th>{{'Appt No.'|translate}}</th>
+                                            <th>{{'Phone'|translate}}</th>
+                                            <th>{{'Type'|translate}}</th>
+                                            <th>{{'Discription'|translate}}</th>
+                                            <th>{{'Items Qty'|translate}}</th>
+                                            <th>{{'Amount'|translate}}</th>
+                                            <th>{{'Delivery Date'|translate}}</th>
+                                            <th>{{'Barcode'|translate}}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of records; let i = index">
+                                            <td>{{i+1}}</td>
+                                            <td>{{item?.item_id }}</td>
+                                            <td>{{item?.first_name}}</td>
+                                            <td>{{item?.last_name}}</td>
+                                            <td>{{item?.address }}</td>
+                                            <td>{{item?.postal_code}}</td>
+                                            <td>{{item?.appt_no}}</td>
+                                            <td>{{item?.phone }}</td>
+                                            <td>{{item?.type}}</td>
+                                            <td>{{item?.discription}}</td>
+                                            <td>{{item?.items_count }}</td>
+                                            <td>{{item?.collection_amount}}</td>
+                                            <td>{{item?.delivery_date}}</td> 
+                                            <td>{{item?.barcode}}</td> 
+                                        </tr>
+                                        <tr *ngIf="records.length === 0">
+                                            <td colspan="10">
+                                                <h5 style="text-align: center;">{{'No data found'|translate}}</h5>
+                                            </td>
+                                           
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->

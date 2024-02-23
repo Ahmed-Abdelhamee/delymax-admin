@@ -1,0 +1,30 @@
+<div class="container-fluid" >
+  <div class="row">
+    <div class="col-xl-2" style="padding-right: 0;padding-left: 0;" >  
+    <div  style="background-color: #ff5a00; padding: 5px;" class="text-center">
+        <h6 class="text-white">{{'Delivery Boys'|translate}} </h6>
+        
+    </div>
+    <ul class="order-detail">
+      <li style="display: flex;" *ngFor="let db of dBoyes"><div class="col-md-8"><a (click)="showDb(db)">{{ db.name }} </a></div><div class="col-md-4"><a *ngIf="db.online && db.busy">{{ 'Busy'|translate }} </a><a style="color: rgb(84, 167, 2);" *ngIf="db.online &&!db.busy">{{ 'Online'|translate }} </a><a style="color: rgb(74, 75, 73);" *ngIf="!db.online ">{{ 'Offline'|translate }} </a></div></li>
+  </ul>
+    </div>
+    <div  class="col-xl-10" style="padding-right: 0;padding-left: 0;" fxLayout="column">
+       <div class="map" fxFlex="1 1 100%" #map>
+         
+            <agm-map [latitude]="options.lat" [longitude]="options.lng" [zoom]="options.zoom" (mapReady)="onMapReady($event)" (mapClick)="mapClicked($event)" #agmMap>
+                                            
+            <agm-marker *ngFor="let db of dBoyes " [latitude]="db.location.lat" [longitude]="db.location.lng" [markerDraggable]="false"  [iconUrl] ="dbIcon" [label]="db.name"
+            ></agm-marker>
+            <agm-polygon [paths]="triangleCoords" [clickable]="false">
+            </agm-polygon>
+
+          </agm-map>
+        </div>
+    </div>
+  </div>
+  
+       
+        
+    
+</div>

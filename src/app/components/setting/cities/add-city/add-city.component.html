@@ -1,0 +1,104 @@
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card tab2-card">
+                <div class="card-header">
+                    <h5> {{'Add Zone'|translate}}</h5>
+                    <div class="col-xl-8" >
+                        <div class="row">
+                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Draw Zone :'|translate}}</label>
+                        <div class="col-xl-8 col-sm-7">
+                            <div class="form-group row">
+                                <input class="form-control col-xl-12 col-sm-7" ngx-google-places-autocomplete (onAddressChange)="handleAddressChange($event)" />
+                            </div>
+                            <agm-map [latitude]="options.lat" [longitude]="options.lng" [zoom]="zoom"  [agmDrawingManager]="drawing" (mapReady)="onMapReady($event)" #agmMap>
+                                <agm-drawing-manager #drawing="agmDrawingManager" (polygonComplete)="polygonCreated($event)" (overlayComplete)="extractPolygonPoints($event)"  [drawingControl]="managerOptions.drawingControl" [drawingControlOptions]="managerOptions.drawingControlOptions"
+                                  [polygonOptions]='managerOptions.polygonOptions' [drawingMode]='managerOptions.drawingMode'>
+                                </agm-drawing-manager>
+                              </agm-map>
+                        </div>
+                    </div> 
+                    </div>
+                </div>
+                <div class="card-body tab2-card">
+                    <ngb-tabset class="tab-coupon">
+                        <ngb-tab title="{{'Zone Settings'|translate}}">
+                            <ng-template ngbTabContent>                                                                                                                                        <div class="tab-pane fade active show" id="account" role="tabpanel"
+                                        aria-labelledby="account-tab">
+                                        
+                                        <div class="card">
+                                            
+                                            <div class="card-body">
+                                                <div class="row product-adding">
+                                                    
+                                                    <div class="col-xl-8">
+                                                        <form class="needs-validation" [formGroup]="stateForm" (ngSubmit) = "onAddState()">
+                                                            <div class="add-product-form">
+                                                                
+                                                                <div class="form-group row">
+                                                                    <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Name :'|translate}}</label>
+                                                                    <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                                                        type="text" [formControl]="stateForm.controls['name']" required>
+                                                                    <div *ngIf="stateForm.controls.name.touched && stateForm.controls.name.errors?.required"
+                                                                        class="text text-danger">
+                                                                        {{'Name is required.'|translate}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Name (EN):'|translate}}</label>
+                                                                    <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                                                        type="text" [formControl]="stateForm.controls['name_En']" required>
+                                                                    <div *ngIf="stateForm.controls.name_En.touched && stateForm.controls.name_En.errors?.required"
+                                                                        class="text text-danger">
+                                                                        {{'Name (EN)is required.'|translate}}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row">
+                                                                    <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0">{{'Town :'|translate}}</label>
+                                                                    <select class="form-control digits col-xl-8 col-sm-7"
+                                                                        id="exampleFormControlSelect2" formControlName="town">
+                                                                        <option *ngFor="let town of towns" [value]="town.id">
+                                                                            {{town.name}}
+                                                                        </option>
+                                                                    </select>
+                                                                </div>
+                                                               
+                                                                <div class="form-group row">
+                                                                    <label for="validationCustom03" class="col-xl-3 col-sm-4 mb-0">{{'Delivery Charge'|translate}}</label>
+                                                                    <input class="form-control col-xl-8 col-sm-7" id="validationCustom03"
+                                                                        type="number" formControlName="deliveryCharge" required="" value="0">
+                                                                    <div *ngIf="stateForm.controls.deliveryCharge.touched && stateForm.controls.deliveryCharge.errors?.required"
+                                                                        class="text text-danger">
+                                                                        {{'Delivery Charge'|translate}} {{'is required.'|translate}}
+                                                                    </div>
+                                                                </div>
+                                                                
+                            
+                                                               
+                                                            </div>
+                                                        </form>
+                                                       
+                                                        <div class="form-group row mb-0">
+                                                            <div class="product-buttons col-sm-8 offset-xl-3 offset-sm-4">
+                                                                <button [disabled]="stateForm.status === 'INVALID'" type="submit" class="btn btn-primary" (click)="onAddState()" class="btn btn-primary mr-1">{{'Add'|translate}}</button>
+                                                                <button type="button" class="btn btn-light" (click)="backClicked()">{{'Discard'|translate}}</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                    
+                    </ngb-tabset>
+               
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+

@@ -1,0 +1,64 @@
+<div class="container-fluid">
+    <div class="row">
+
+        
+        <div class="col-sm-12">
+            <div class="card">
+               
+                <div class="card-body">
+                    <div class="row product-adding">
+                        
+                        <div class="col-xl-7">
+                          
+                            <form class="needs-validation" [formGroup]="SliderForm" (ngSubmit) = "onAddSlider()">
+                                <div class="add-product-form">
+                                    <div  class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0">{{'Town :'|translate}}</label>
+                                        <mat-select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" [(ngModel)]= "selectedTown" formControlName="town"  (selectionChange)="getStates()">
+                                            <mat-option *ngFor="let town of towns" [value]="town.id">
+                                                {{town.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </div>
+                                    <div  class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0">{{'State :'|translate}}</label>
+                                        <mat-select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" [(ngModel)]= "selectedState" formControlName="state"  (selectionChange)="getShops()">
+                                            <mat-option *ngFor="let state of states" [value]="state.id">
+                                                {{state.name}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </div>
+            
+                                
+                                  
+
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-sm-4">{{'Image :'|translate}}</label>
+                                        <div class="col-xl-8 col-sm-7 pl-0 description-sm">
+                                            <input class="form-control" type="file" id="photos" placeholder="{{'Enter Image'|translate}} " #photos required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="form-group row mb-0">
+                                <label class="col-xl-3 col-sm-4"></label>
+                                <mat-checkbox (change)="allLangs()" [checked]="allLang" *ngIf="mode=='add'">
+                                    {{'All Languages'|translate}}
+                               </mat-checkbox>
+                                </div>
+                            <div class="form-group row mb-0">
+                                <div class="product-buttons col-sm-8 offset-xl-3 offset-sm-4">
+                                    <button [disabled]="SliderForm.status === 'INVALID'" type="submit" class="btn btn-primary" (click)="onAddSlider()" class="btn btn-primary mr-1">{{'Add'|translate}}</button>
+                                    <button type="button" class="btn btn-light">{{'Discard'|translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->

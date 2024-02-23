@@ -1,0 +1,83 @@
+<!-- Page Content -->
+<div class="content container-fluid">
+
+
+
+    <div class="card mb-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="profile-view">
+                        
+                        <div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="profile-info-left">
+                                        <ul class="order-detail">
+                                            <li>{{'Name :'|translate}} {{client?.name}}</li>
+                                            <li>{{'Phone Number 1 :'|translate}} {{client?.phoneNumber1}}</li>
+                                            <li>{{'Phone Number 2 :'|translate}} {{client?.phoneNumber2}}</li>
+                                            <li>{{'Contact Person Name :'|translate}} {{client?.contact_person_name}}</li>
+                                            <li>{{'Contact Person Phone Number 1 :'|translate}} {{client?.contact_person_phone_number1}}</li>
+                                            <li>{{'Contact Person Phone Number 2 :'|translate}} {{client?.contact_person_phone_number2}}</li>
+                                            <li>{{'Contact Position :'|translate}} {{client?.contact_position}}</li>
+                                            <li>{{'Address :'|translate}} {{client?.address}}</li>
+                                            <li>{{'Started date :'|translate}} {{client?.started_date}}</li>
+                                            <li>{{'notes :'|translate}} {{client?.notes }}</li>
+                                        </ul>
+                                       
+                                    
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card tab-box" style="margin-top: 20px;">
+        <div class="row user-tabs">
+            <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
+                <ul class="nav nav-tabs nav-tabs-bottom">
+                    <li class="nav-item"><a href="#profile" data-toggle="tab" class="nav-link active">{{'Summary'|translate}}</a>
+                    </li>
+                    <li class="nav-item"><a href="#orders" data-toggle="tab" class="nav-link">{{'Orders'|translate}}</a></li>
+                   <li class="nav-item"><a href="#wearhouses" data-toggle="tab" class="nav-link">{{'Wearhouses'|translate}}</a></li> 
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" style="background-color: white; margin-top: -25px;">
+
+        <!-- Profile Info Tab -->
+        <div id="profile" class="pro-overview tab-pane fade show active" style="background-color: white; padding-top: 25px;">
+         <app-summery [allPacks]="allPacks" [allCompanyPacks]="allCompanyPacks" ></app-summery>
+        </div>
+        <!-- /Profile Info Tab -->
+
+        <!-- Invoices Tab -->
+        <div class="tab-pane fade" id="orders">
+          <app-orders [allPacks]="allPacks" [allCompanyPacks]="allCompanyPacks"></app-orders>
+        </div>
+        <!-- /Invoices Tab -->
+
+        <!-- Account Tab -->
+        <div class="tab-pane fade" id="wearhouses">
+       <app-gifts></app-gifts>
+        </div>
+        <!-- Account Tab -->
+        <!-- Services Tab -->
+        <div class="tab-pane fade" id="log">
+        
+         </div>
+         <!-- Services Tab -->
+ 
+      
+    </div>
+</div>
+<!-- /Page Content -->

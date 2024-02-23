@@ -1,0 +1,45 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                
+                <div class="card-body">
+                    
+                    <div id="batchDelete" class="category-table custom-datatable">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" id="datatable"
+                            class="table table-striped custom-table datatable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>{{'Order Count'|translate}}</th>
+                                    <th>{{'Total'|translate}}</th>
+                                    <th>{{'Status'|translate}}</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let order of orders; let i = index">
+                                    <td>{{i+1}}</td>
+                                    <td>{{order?.orderCount}}</td>
+                                    <td>{{order?.total| number : '1.2-2'}}</td>
+                                    <td><a *ngIf="!order?.closed" style="color: crimson;">{{'Not Collected'|translate}}</a><a *ngIf="order?.closed" style="color: rgb(58, 189, 7);">{{'Collected'|translate}}</a></td>
+                                    
+                                </tr>
+                                <tr *ngIf="orders.length === 0">
+                                    <td colspan="10">
+                                        <h5 style="text-align: center;">No data found</h5>
+                                    </td>
+                                   
+                                </tr>
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->

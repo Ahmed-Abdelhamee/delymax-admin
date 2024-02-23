@@ -1,0 +1,11 @@
+<div class="flex col-xl-12 w-full h-full py-8 pl-8 pr-6">
+  <div class="flex col-xl-12 mt-7"
+     cdkDropListGroup>
+    <div app-zone-orders class="board-dnd-list"
+         *ngFor="let status of issueStatuses"
+         [status]="status"
+         [orders]="projectQuery.issueByStatusSorted$(status,Allorders)">
+    </div>
+</div>  
+</div>
+<svg-definitions></svg-definitions>

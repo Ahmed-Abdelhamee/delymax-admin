@@ -1,0 +1,99 @@
+<!-- Page Content -->
+<div class="content container-fluid">
+
+
+
+    <div class="card mb-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="profile-view">
+                        
+                        <div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="profile-info-left">
+                                        <ul class="order-detail">
+                                            <li>{{'Name :'|translate}} {{shop?.name}}</li>
+                                            <li>{{'Phone :'|translate}} {{shop?.phone}}</li>
+                                            <li>{{'address :'|translate}} {{shop?.address}}</li>
+                                        </ul>
+                                       
+                                    
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="logo-wrapper center-logo"><img class="blur-up lazyloaded"
+                                        src="assets/images/dashboard/logo.png" alt=""></div>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card tab-box">
+        <div class="row user-tabs">
+            <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
+                <ul class="nav nav-tabs nav-tabs-bottom">
+                    <li class="nav-item"><a href="#profile" data-toggle="tab" class="nav-link active">{{'Summary'|translate}}</a>
+                    </li>
+                    <li class="nav-item"><a href="#orders" data-toggle="tab" class="nav-link">{{'Orders'|translate}}</a></li>
+                    <li class="nav-item"><a href="#cat" data-toggle="tab" class="nav-link">{{'Category'|translate}}</a></li>
+                    <li class="nav-item"><a href="#type" data-toggle="tab" class="nav-link">{{'Type'|translate}}</a></li>
+                    <li class="nav-item" *ngIf="shop?.type =='2'"><a href="#side" data-toggle="tab" class="nav-link">{{'Sides'|translate}}</a></li>
+                    <li class="nav-item" ><a href="#unit" data-toggle="tab" class="nav-link">{{'Units'|translate}}</a></li>
+                    <li class="nav-item"><a href="#product" data-toggle="tab" class="nav-link">{{'Products'|translate}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content">
+
+        <!-- Profile Info Tab -->
+        <div id="profile" class="pro-overview tab-pane fade show active">
+         <app-shop-summery ></app-shop-summery>
+        </div>
+        <!-- /Profile Info Tab -->
+
+        <!-- Invoices Tab -->
+        <div class="tab-pane fade" id="orders">
+          <app-shop-orders></app-shop-orders>
+        </div>
+        <!-- /Invoices Tab -->
+
+        <!-- Account Tab -->
+        <div class="tab-pane fade" id="cat">
+       <app-arabic-shop-cat></app-arabic-shop-cat>
+        </div>
+        <div class="tab-pane fade" id="type">
+        <app-type></app-type>
+         </div>
+        <!-- Account Tab -->
+        <!-- Services Tab -->
+        <div class="tab-pane fade" id="product">
+            <app-arabic-shop-product></app-arabic-shop-product>
+         </div>
+         <!-- Services Tab -->
+
+         <!-- Services Tab -->
+        <div class="tab-pane fade" id="unit">
+            <app-arabic-shop-unit></app-arabic-shop-unit>
+         </div>
+         <!-- Services Tab -->
+         <!-- Services Tab -->
+        <div class="tab-pane fade" id="side">
+            <app-arabic-shop-side></app-arabic-shop-side>
+         </div>
+         <!-- Services Tab -->
+ 
+      
+    </div>
+</div>
+<!-- /Page Content -->

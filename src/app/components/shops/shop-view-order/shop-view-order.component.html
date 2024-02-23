@@ -1,0 +1,228 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="section-b-space" *ngIf="order">
+                <div class="container">
+                    <div class="row order-success-sec">
+                        <div class="col-sm-12">
+                            <h4>{{'Order Type'|translate}} {{ order.payment |translate}}</h4>
+                            <div class="myy-5"></div>
+                        </div>
+                        <div class="col-sm-6 border-br">
+                            <h4>{{'Summery'|translate}}</h4>
+                            <div class="myy-5"></div>
+                            <ul class="order-detail">
+                                <li>{{'Order ID :'|translate}} {{ order.orderId }}</li>
+                                <li>{{'Order Date :'|translate}} {{ order.date}}</li>
+                                <li>{{'Order Total :'|translate}} {{ order.totalAmount}} {{'EGP'|translate}}</li>
+                            </ul>
+                            <div class="myy-5"></div>
+                        </div>
+                        <div  class="col-sm-6 border-br">
+                            <h4>{{'Client Information'|translate}}</h4>
+                            <div class="myy-5"></div>
+                            <ul class="order-detail">
+                                <li>{{ order.to.name }}</li>
+                                <li>{{'Contact No.'|translate}} {{ order.to.phone }}</li>
+                            </ul>
+                            <div class="myy-4"></div>
+                          
+                        </div>
+                       
+                       
+                        
+                        <div *ngIf="order.payment == 'Delivery'" class="col-sm-6 border-br">
+                     
+                            <div >
+                                 <h4>{{'Shipping address'|translate}}</h4>
+                                 <div class="myy-5"></div>
+                                 <ul class="order-detail">
+                                <li>{{ order.to.address }}</li>
+                                <li>{{ order.to.state }} , {{ order.to.town }} ,{{'Building No.'|translate}} ( {{ order.to.building }} )  {{'Appartment No.'|translate}} ( {{ order.to.apartment }} )</li>
+                               
+                               </ul>
+                               </div>
+                           
+                            <a (click)="viewMap()" style="margin: 5px; float: right;" class="btn btn-primary mr-1" translate><i class="fa fa-map-marker" aria-hidden="true" ></i>Map</a>
+                            <div class="myy-5"></div>
+                        </div>
+                        
+                        
+                        <div class="col-sm-6 border-br">
+                            <h4>{{'Order Status'|translate}}</h4>
+                            <div class="myy-5"></div>
+                            <select class="form-control digits col-xl-12 col-sm-12"
+                                        id="exampleFormControlSelect2"  [(ngModel)]= "orderStatus" [ngModelOptions]="{standalone: true}" [disabled] = "!canUpdate">
+                                        <option *ngFor="let sta of Status" [value]="sta.id" [selected] = "sta.id==orderStatus">
+                                            {{sta.name|translate}}
+                                        </option>
+                                    </select>
+                                <button (click)="updteStatus()" class="btn btn-primary mr-1" style="margin: 5px;" [disabled] = "!canUpdate" >
+                                    {{'Update'|translate}}
+                                </button>
+                                <button (click)="RequestDelivery()" class="btn btn-primary mr-1" style="margin: 5px; float: right;" [disabled] = "!canUpdate" >
+                                    {{'Request Delivery'|translate}}
+                                </button>
+                            <div class="myy-5"></div>
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="row" *ngIf="showMap">
+                        <div  class="col-md-12">
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">  
+                                <div class="col-md-12">
+                                    <div class="map-icons street">
+                                    
+                                        <div  style="background-color: #ff5a00; padding: 14px;">
+                                            <h6 class="text-white">{{'Distance :'|translate}} {{distance | number : '1.2-2'}} {{'Km'|translate}}</h6>
+                                        </div>
+                    
+                                        </div>
+                                    <agm-map directionsMap 
+                                    [showDirection]="displayDirections"
+                                    [origin]="origin"
+                                    [destination]="destination"
+                                    [zoom]="zoom"
+                                    [disableDefaultUI]="false">
+                                    
+                                     <agm-marker
+                                     [latitude]="origin.latitude"
+                                     [longitude]="origin.longitude"
+                                     [iconUrl] ="shopIcon">
+                                    </agm-marker>
+                                    <agm-marker
+                                    [latitude]="destination.latitude"
+                                    [longitude]="destination.longitude"
+                                    [iconUrl] ="userIcon">
+                                   </agm-marker>
+                                </agm-map>
+                                </div>
+                            </div>
+                        
+                
+                            
+                        </div>
+                    </div>
+                    <div class="row  ">
+                        <div class="col-lg-12">
+                            <div class="product-order">
+                                <div  class="col-sm-12">
+                                    <div *ngIf="order.type == '2'">
+                                        <h4>{{'Order Details'|translate}}</h4>
+                                        <h5>{{order.txt_order}}</h5>
+                                    </div>
+                                    <table *ngIf="order.type == '1'" class="table cart-table table-responsive-xs">
+                                        <thead>
+                                            <tr class="table-head">
+                                                <th scope="col">{{'product name'|translate}}</th>
+                                                <th scope="col">{{'Add-ons'|translate}}</th>
+                                                <th scope="col">{{'price'|translate}}</th>
+                                                <th scope="col">{{'quantity'|translate}}</th>
+                                                <th scope="col">{{'total'|translate}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let product of order.product">
+                                            <tr>
+                                              
+                                                <td>
+                                                    {{ product.title | titlecase }} ({{ product.size | titlecase}}) 
+                                                   
+                                                </td>
+                                               <td>
+                                                <div class="col-xs-3">
+                                                    <ul>
+                                                        <li *ngFor="let side of product.sides">
+                                                    
+                                                        {{ side.name}} {{ side.price }} {{'EGP'|translate}}
+                                                      
+                                                        </li>
+                                                    </ul>
+                                                    
+                                                </div>
+                                               </td>
+                                                <td>
+                                                    <h2>
+                                                        {{ product.price }} {{'EGP'|translate}}
+                                                    </h2>
+                                                </td>
+                                                <td>
+                                                    <h2>{{product.quantity}}</h2>
+                                                </td>
+                                                
+                                                <td>
+                                                    <h2 class="td-color">
+                                                        {{ (product.price * product.quantity) * productService?.Currency.price }} {{'EGP'|translate}}
+                                                    </h2>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="table cart-table table-responsive-md">
+                                        <tfoot>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                        
+                                                <td>{{'Subtotal'|translate}} </td>
+                                                <td>
+                                                    <h2> {{ order.subtotal }} {{'EGP'|translate}}</h2>
+                                                </td>
+                                            </tr>
+                                            <tr >
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                        
+                                                <td>{{'Tax'|translate}}</td>
+                                                <td>
+                                                    <h2> {{ order.tax }} {{'EGP'|translate}}</h2>
+                                                </td>
+                                            </tr>
+                                            <tr *ngIf="order.shipping > 0">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                        
+                                                <td>{{'Shipping'|translate}} </td>
+                                                <td>
+                                                    <h2> {{ order.shipping }} {{'EGP'|translate}}</h2>
+                                                </td>
+                                            </tr>
+                                            <tr *ngIf="order.discount > 0">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                        
+                                                <td>{{'Discount'|translate}} </td>
+                                                <td>
+                                                    <h2> {{ order.discount }} {{'EGP'|translate}}</h2>
+                                                </td>
+                                            </tr>
+                                            <tr >
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                        
+                                                <td><h5>{{'Total'|translate}}</h5></td>
+                                                <td>
+                                                    <h5> {{ order.totalAmount }} {{'EGP'|translate}}</h5>
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->

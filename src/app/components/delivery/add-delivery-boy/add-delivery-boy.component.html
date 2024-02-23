@@ -1,0 +1,195 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <button data-toggle="modal"
+            data-target="#progress" class="btn btn-primary" data-backdrop="static" id="dialog" hidden ></button>
+            <div class="card tab2-card">
+                <div class="card-header">
+                    <h5> {{'Add Delivery Boy'|translate}}</h5>
+                </div>
+                <div class="card-body tab2-card col-sm-8">
+                    <ngb-tabset class="tab-coupon">
+                        <ngb-tab title="{{'Account'|translate}}">
+                            <ng-template ngbTabContent>                                                                                                                                        <div class="tab-pane fade active show" id="account" role="tabpanel"
+                                        aria-labelledby="account-tab">
+                                    <form [formGroup]="accountForm" class="needs-validation user-add" novalida>
+                                        <h4>{{'Account Details'|translate}}</h4>
+                                        <div class="form-group row">
+                                            <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'Town :'|translate}}</label>
+                                            <select class="form-control digits col-xl-8 col-sm-7"
+                                                id="exampleFormControlSelect2" [(ngModel)]= "selectedTown" formControlName="town"  (change)="getStates()">
+                                                <option *ngFor="let town of towns" [value]="town.id" selected = "town.id == user.town">
+                                                    {{town.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'State :'|translate}}</label>
+                                            <select class="form-control digits col-xl-8 col-sm-7"
+                                                id="exampleFormControlSelect2" formControlName="state" >
+                                                <option *ngFor="let state of states" [value]="state.id" selected = "state.id == user.state">
+                                                    {{state.name}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0"><span>*</span>{{'Type :'|translate}}</label>
+                                            <select class="form-control digits col-xl-8 col-sm-7"
+                                                id="exampleFormControlSelect2"  formControlName="vType">
+                                                <option *ngFor="let role of roles" [value]="role.name">
+                                                    {{role.name|translate}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                      
+                                        
+                                        <div class="form-group row">
+                                            <label for="validationCustom0" class="col-xl-3 col-md-4"><span>*</span>
+                                                {{'Name'|translate}}</label>
+                                            <input class="form-control col-xl-8 col-md-7" id="validationCustom0"
+                                                type="text"  formControlName="name" required="">
+                                        </div>
+                                       
+                                        <div class="form-group row">
+                                            <label for="validationCustom2" class="col-xl-3 col-md-4"><span>*</span>
+                                                {{'Phone'|translate}}</label>
+                                            <input class="form-control col-xl-8 col-md-7" id="validationCustom2"
+                                                type="text"  formControlName="phone" required="">
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="validationCustom2" class="col-xl-3 col-md-4"><span>*</span>
+                                                {{'Email'|translate}}</label>
+                                            <input class="form-control col-xl-8 col-md-7" id="validationCustom3"
+                                                type="text"  formControlName="email" required="">
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="validationCustom2" class="col-xl-3 col-md-4"><span>*</span>
+                                                {{'Address'|translate}}</label>
+                                            <input class="form-control col-xl-8 col-md-7" id="validationCustom3"
+                                                type="text"  formControlName="address" required="">
+                                        </div>
+                                       
+                                        <div class="form-group row">
+                                            <label for="validationCustom1" class="col-xl-3 col-md-4"><span>*</span>
+                                                {{'ID Number'|translate}}</label>
+                                            <input class="form-control col-xl-8 col-md-7" id="validationCustom1"
+                                                type="text"  formControlName="idNumber" required="">
+                                        </div>
+                                        
+                                        
+                                        <div class="form-group row">
+                                            <label for="validationCustom3" class="col-xl-3 col-md-4"><span>*</span>
+                                                {{'Password'|translate}}</label>
+                                            <input class="form-control col-xl-8 col-md-7" id="validationCustom4"
+                                                type="password"  formControlName="passwored" required="">
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="validationCustom4" class="col-xl-3 col-md-4"><span>*</span>
+                                                {{'Confirm Password'|translate}}</label>
+                                            <input class="form-control col-xl-8 col-md-7" id="validationCustom5"
+                                                type="password"  formControlName="confirmPwd" >
+                                        </div>
+                                    </form>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                        <ngb-tab>
+                            <ng-template ngbTabTitle>{{'Images'|translate}}
+                                <ng-template ngbTabContent>
+                                        
+                                        <div class="permission-block">
+                                            <div class="attribute-blocks">
+                                                <h4 style="margin-bottom: 20px;">{{'Delivery Boy Papers  Images'|translate}} </h4>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'ID Image 1'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div>
+                                                            <img [src]="idPhoto1" alt="" class="img-fluid image_zoom_1 col-xl-8 db-image">
+                                                            <input accept=".jpg,.png,.jpeg" class="form-control col-xl-8 col-sm-7" type="file" 
+                                             placeholder="{{'Enter Image'|translate}}" id="photo1"  (change)="selectFile($event,'idPhoto1')"   required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'ID Image 2'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div>
+                                                            <img [src]="idPhoto2" alt="" class="img-fluid image_zoom_1 col-xl-8 db-image">
+                                                            <input class="form-control col-xl-8 col-sm-7" type="file" 
+                                             placeholder="{{'Enter Image'|translate}}" accept=".jpg,.png,.jpeg" id="photo2"  (change)="selectFile($event,'idPhoto2')"  required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'Driving License Image'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div>
+                                                            <img [src]="dLPhoto" alt="" class="img-fluid image_zoom_1 col-xl-8 db-image"> 
+                                                            <input class="form-control col-xl-8 col-sm-7" type="file" 
+                                             placeholder="{{'Enter Image'|translate}}" accept=".jpg,.png,.jpeg" id="photo3"  (change)="selectFile($event,'dLPhoto')" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'Vehicle license Image'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div>
+                                                            <img [src]="mLPhoto" alt="" class="img-fluid image_zoom_1 col-xl-8 db-image">
+                                                            <input class="form-control col-xl-8 col-sm-7" type="file" 
+                                             placeholder="{{'Enter Image'|translate}}" accept=".jpg,.png,.jpeg"  id="photo4"  (change)=" selectFile($event,'mLPhoto')"  required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-3 col-sm-4">
+                                                        <label>{{'Fish Image'|translate}}</label>
+                                                    </div>
+                                                    <div class="col-xl-9 col-sm-8">
+                                                        <div>
+                                                        <img [src]="fishPhoto" alt="" class="img-fluid image_zoom_1 col-xl-8 db-image">
+                                                        <input class="form-control col-xl-8 col-sm-7" type="file" 
+                                             placeholder="{{'Enter Image'|translate}}" accept=".jpg,.png,.jpeg" id="photo5"  (change)="selectFile($event,'fishPhoto')"  required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                               
+                                            </div>
+                                           
+                                        </div>
+                                  
+                                </ng-template>
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
+                    <div class="pull-right">
+                        <div class="form-group has-danger">
+                            <div class="form-control-feedback">
+                              {{ registerErrors }}
+                            </div>
+                          </div>
+                        <button type="button" class="btn btn-primary" (click)="addUser()">{{'Save'|translate}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+<div class="modal custom-modal fade" id="progress" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+     <div class="progress-content modal-dialog-centered" >
+
+        <mat-spinner></mat-spinner>
+     
+      </div>
+       </div>
+   </div>

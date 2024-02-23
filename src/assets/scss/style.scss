@@ -1,0 +1,45 @@
+@import "~bootstrap/scss/bootstrap";
+@import 'feather-icon/feather-icon';
+
+@import 'theme/variables';
+@import 'theme/admin_style';
+@import 'theme/rtl';
+@import 'theme/chartist.scss';
+@import 'theme/datatable';
+@import 'icons/icoicon/icons';
+// Flag contents
+@import 'flag-icon/flag-icon-base';
+@import 'flag-icon/flag-icon-more';
+@import 'flag-icon/flag-icon-list';
+@import 'icons/themify/themify-icons';
+@import '~dropzone/dist/min/dropzone.min.css';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
+@import 'ng-zorro-antd/style/index.min.css';
+@import 'ng-zorro-antd/tooltip/style/index.min.css';
+@import 'ng-zorro-antd/spin/style/index.min.css';
+@import 'ng-zorro-antd/modal/style/index.min.css';
+@import 'ng-zorro-antd/dropdown/style/index.min.css';
+@import 'ng-zorro-antd/select/style/index.min.css';
+@import 'ng-zorro-antd/drawer/style/index.min.css';
+@import 'ng-zorro-antd/notification/style/index.min.css';
+@import 'ng-zorro-antd/popover/style/index.min.css';
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
+// Toastr Css
+@import '~ngx-toastr/toastr.css';
+
+.pre-bootstrapping-container {
+    @apply w-full h-full relative;
+    .pre-bootstrapping-spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }

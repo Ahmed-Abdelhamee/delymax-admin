@@ -1,0 +1,75 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-3 col-md-6 xl-50">
+            <div class="card o-hidden widget-cards">
+                <div class="bg-warning card-body">
+                    <div class="media static-top-widget row">
+                        <div class="icons-widgets col-4">
+                            <div class="align-self-center text-center">
+                                <app-feather-icons [icon]="'navigation'" class="font-warning"></app-feather-icons>
+                            </div>
+                        </div>
+                        <div class="media-body col-6"><span >{{'All Orders'|translate}}</span>
+                            <h3 ><span class="counter" [CountTo]="allOrders?.length" [from]="0"
+                                    [duration]="2">{{allOrders?.length}}</span><small></small></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 xl-50">
+            <div class="card o-hidden  widget-cards">
+                <div class="bg-secondary card-body">
+                    <div class="media static-top-widget row">
+                        <div class="icons-widgets col-4">
+                            <div class="align-self-center text-center">
+                                <app-feather-icons [icon]="'box'" class="font-secondary"></app-feather-icons>
+                            </div>
+                        </div>
+                        <div class="media-body col-8"><span class="m-0">{{'All Payments'|translate}}</span>
+                            <h3 class="mb-0"><span class="counter" [CountTo]="allPayments" [from]="0"
+                                    [duration]="2">{{allPayments}}</span><small></small> {{'EGP'|translate}} </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+        <div class="row">
+            <div class="col-xl-3 col-md-6 xl-50">
+                <div class="card o-hidden widget-cards">
+                    <div class="bg-primary card-body">
+                        <div class="media static-top-widget row">
+                            <div class="icons-widgets col-4">
+                                <div class="align-self-center text-center">
+                                    <app-feather-icons [icon]="'navigation'" class="font-warning"></app-feather-icons>
+                                </div>
+                            </div>
+                            <div class="media-body col-8"><span class="m-0">{{'This month orders'|translate}}</span>
+                                <h3 class="mb-0"><span class="counter" [CountTo]="thisMonthOrders.length" [from]="0"
+                                        [duration]="2">{{thisMonthOrders.length}}</span></h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 xl-50">
+                <div class="card o-hidden widget-cards">
+                    <div class="bg-danger card-body">
+                        <div class="media static-top-widget row">
+                            <div class="icons-widgets col-4">
+                                <div class="align-self-center text-center">
+                                    <app-feather-icons [icon]="'box'" class="font-secondary"></app-feather-icons>
+                                </div>
+                            </div>
+                            <div class="media-body col-8"><span class="m-0">{{'This month payments'|translate}}</span>
+                                <h3 class="mb-0"><span class="counter" [CountTo]="thisMonthPayments" [from]="0"
+                                        [duration]="2">{{thisMonthPayments}}</span> {{'EGP'|translate}} </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>

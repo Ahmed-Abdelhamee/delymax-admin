@@ -1,0 +1,208 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <button data-toggle="modal"
+            data-target="#progress" class="btn btn-primary" data-backdrop="static" id="dialog" hidden ></button>
+            <div class="card">
+               
+                <div class="card-body add-shop">
+                    <div class="row product-adding">
+                        
+                        <div class="col-xl-12">
+                          
+                            <form class="needs-validation" [formGroup]="shopForm" (ngSubmit)="onShopFormSubmit()">
+                                <div class="add-product-form">
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0">{{'Town :'|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="town"  (change)="getStates()">
+                                            <option *ngFor="let town of towns" [value]="town.id">
+                                                {{town.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0">{{'State :'|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="state" >
+                                            <option *ngFor="let state of states" [value]="state.id">
+                                                {{state.name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Name :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="text" [formControl]="shopForm.controls['name']" required>
+                                        <div *ngIf="shopForm.controls.name.touched && shopForm.controls.name.errors?.required"
+                                            class="text text-danger">
+                                            {{'Name is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Images :'|translate}}</label>
+                                        <input accept=".jpg,.png,.jpeg" class="form-control col-xl-8 col-sm-7" type="file" 
+                                        placeholder="{{'Enter Image'|translate}}" id="photo1"  (change)="selectFile($event,'image')"   required>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Logo :'|translate}}</label>
+                                        <input accept=".jpg,.png,.jpeg" class="form-control col-xl-8 col-sm-7" type="file" 
+                                        placeholder="{{'Enter Image'|translate}}" id="photo1"  (change)="selectFile($event,'logo')"   required>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Phone :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="text" [formControl]="shopForm.controls['phone']" required>
+                                        <div *ngIf="shopForm.controls.phone.touched && shopForm.controls.phone.errors?.required"
+                                            class="text text-danger">
+                                            {{'Phone is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Address :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="text" [formControl]="shopForm.controls['address']" required>
+                                        <div *ngIf="shopForm.controls.address.touched && shopForm.controls.address.errors?.required"
+                                            class="text text-danger">
+                                            {{'Address is required.'|translate}}
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0">{{'Type :'|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="type">
+                                            <option *ngFor="let type of types" [value]="type.id">
+                                                {{type.type |translate}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-sm-4 mb-0">{{'Description :'|translate}}</label>
+                                        <textarea class="form-control col-xl-8 col-sm-7 mb-0" rows="3" name="description"
+                                         formControlName="description"></textarea>
+                                         <div *ngIf="shopForm.controls.description.touched && shopForm.controls.description.errors?.required"
+                                            class="text text-danger">
+                                            {{'Shop description is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-xl-3 col-sm-4 mb-0">{{'Description (EN):'|translate}}</label>
+                                        <textarea class="form-control col-xl-8 col-sm-7 mb-0" rows="3" name="description"
+                                         formControlName="description_En"></textarea>
+                                         <div *ngIf="shopForm.controls.description_En.touched && shopForm.controls.description_En.errors?.required"
+                                            class="text text-danger">
+                                            {{'Shop description (EN) is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0">{{'Open Hour :'|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="startH">
+                                            <option *ngFor="let hour of hours" [value]="hour.value">{{hour.name|translate}}</option>
+                                           
+                                        </select>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="exampleFormControlSelect2" class="col-xl-3 col-sm-4 mb-0">{{'Close Hour :'|translate}}</label>
+                                        <select class="form-control digits col-xl-8 col-sm-7"
+                                            id="exampleFormControlSelect2" formControlName="endH">
+                                            <option *ngFor="let hour of hours" [value]="hour.value">{{hour.name|translate}}</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Minimum Charge :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="number" [formControl]="shopForm.controls['minCharge']" required>
+                                        <div *ngIf="shopForm.controls.minCharge.touched && shopForm.controls.minCharge.errors?.required"
+                                            class="text text-danger">
+                                            {{'Minimum Charge is required.'|translate}}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Longitude :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="number" [formControl]="shopForm.controls['lng']" required>
+                                        <div *ngIf="shopForm.controls.lng.touched && shopForm.controls.lng.errors?.required"
+                                            class="text text-danger">
+                                            {{'Longitude is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Latitude :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="number" [formControl]="shopForm.controls['lat']" required>
+                                        <div *ngIf="shopForm.controls.lat.touched && shopForm.controls.lat.errors?.required"
+                                            class="text text-danger">
+                                            {{'Latitude is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Discount :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="number" [formControl]="shopForm.controls['discount']" required>
+                                        <div *ngIf="shopForm.controls.discount.touched && shopForm.controls.discount.errors?.required"
+                                            class="text text-danger">
+                                            {{'discount is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Discount Limit :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="number" [formControl]="shopForm.controls['discountLimit']" required>
+                                        <div *ngIf="shopForm.controls.discountLimit.touched && shopForm.controls.discountLimit.errors?.required"
+                                            class="text text-danger">
+                                            {{'Discount Limit is required.'|translate}}
+                                        </div>
+                                    </div>
+                                   
+
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Delivery time :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="number" [formControl]="shopForm.controls['pTime']" required>
+                                        <div *ngIf="shopForm.controls.pTime.touched && shopForm.controls.pTime.errors?.required"
+                                            class="text text-danger">
+                                            {{'Delivery time is required.'|translate}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="validationCustom01" class="col-xl-3 col-sm-4 mb-0">{{'Tax :'|translate}}</label>
+                                        <input class="form-control col-xl-8 col-sm-7" id="validationCustom01"
+                                            type="number" [formControl]="shopForm.controls['tax']" required>
+                                        <div *ngIf="shopForm.controls.tax.touched && shopForm.controls.tax.errors?.required"
+                                            class="text text-danger">
+                                            {{'Tax is required.'|translate}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                           
+                            <div class="form-group row mb-0">
+                                <div class="product-buttons col-sm-8 offset-xl-3 offset-sm-4">
+                                    <button type="submit" class="btn btn-primary mr-1" (click)="onShopFormSubmit()">{{'Add'|translate}}</button>
+                                    <button type="button" class="btn btn-light">{{'Discard'|translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->
+<!-- Container-fluid Ends-->
+<div class="modal custom-modal fade" id="progress" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+     <div class="progress-content modal-dialog-centered" >
+
+        <mat-spinner></mat-spinner>
+     
+      </div>
+       </div>
+   </div>

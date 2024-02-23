@@ -1,0 +1,155 @@
+
+<!-- Page Content -->
+<div class="content container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+
+
+            <form (ngSubmit)="submitCompany()" [formGroup]="companySettings">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="form-group row ">
+                            <label class="col-xl-2 col-sm-4 mb-0">{{'Company Name'|translate}}</label>
+                            <input class="form-control col-xl-11 col-sm-7" type="text" value="appSetting?.company"
+                                [class.invalid]="companySettings.get('company').invalid && companySettings.get('company').touched"
+                                formControlName="company">
+                            <div class="col-xl-6 col-sm-4 mb-0"
+                                *ngIf="companySettings.get('company').invalid && companySettings.get('company').touched">
+                                <small
+                                    *ngIf="companySettings.get('company').invalid && companySettings.get('company').touched"
+                                    class="text-danger"> {{'*Company name is required'|translate}}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="form-group row ">
+                            <label class="col-xl-2 col-sm-4 mb-0">{{'Version'|translate}} </label>
+                            <input class="form-control col-xl-11 col-sm-7" type="text" value="appSetting?.ver"
+                                [class.invalid]="companySettings.get('ver').invalid && companySettings.get('ver').touched"
+                                formControlName="ver">
+                            <div class="col-xl-6 col-sm-4 mb-0"
+                                *ngIf="companySettings.get('ver').invalid && companySettings.get('ver').touched">
+                                <small
+                                    *ngIf="companySettings.get('ver').invalid && companySettings.get('ver').touched"
+                                    class="text-danger"> {{'*Version is required'|translate}}</small>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="form-group row ">
+                            <label class="col-xl-1 col-sm-4 mb-0">{{'Address'|translate}}</label>
+                            <input class="form-control col-xl-12 col-sm-7" value="3864 Quiet Valley Lane, Sherman Oaks, CA, 91403"
+                                type="text"
+                                [class.invalid]="companySettings.get('address').invalid && companySettings.get('address').touched"
+                                formControlName="address">
+                            <div class="col-xl-6 col-sm-4 mb-0"
+                                *ngIf="companySettings.get('address').invalid && companySettings.get('address').touched">
+                                <small
+                                    *ngIf="companySettings.get('address').invalid && companySettings.get('address').touched"
+                                    class="text-danger"> {{'*Address is required'|translate}}</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="form-group row ">
+                            <label class="col-xl-2 col-sm-4 mb-0">{{'Email'|translate}}</label>
+                            <input class="form-control col-xl-11 col-sm-7" value="danielporter@example.com" type="email"
+                                [class.invalid]="companySettings.get('email').invalid && companySettings.get('email').touched"
+                                formControlName="email">
+                            <div class="col-xl-6 col-sm-4 mb-0" *ngIf="companySettings.get('email').invalid && companySettings.get('email').touched">
+                                <small
+                                    *ngIf="companySettings.get('email').invalid && companySettings.get('email').touched"
+                                    class="text-danger"> {{'*Email is required'|translate}}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="form-group row">
+                            <label class="col-xl-2 col-sm-4 mb-0">{{'Phone'|translate}}</label>
+                            <input class="form-control col-xl-11 col-sm-7" value="818-978-7102" type="text"
+                                [class.invalid]="companySettings.get('phone').invalid && companySettings.get('phone').touched"
+                                formControlName="phone">
+                            <div class="col-xl-6 col-sm-4 mb-0"
+                                *ngIf="companySettings.get('phone').invalid && companySettings.get('phone').touched">
+                                <small
+                                    *ngIf="companySettings.get('phone').invalid && companySettings.get('phone').touched"
+                                    class="text-danger"> {{'*Phone  is required'|translate}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="form-group row">
+                            <label class="col-xl-3 col-sm-4 mb-0">{{'Facebook'|translate}}</label>
+                            <input class="form-control col-xl-11 col-sm-7" value="" type="text"
+                                [class.invalid]="companySettings.get('facebook').invalid && companySettings.get('facebook').touched"
+                                formControlName="facebook">
+                            <div class="col-xl-6 col-sm-4 mb-0" *ngIf="companySettings.get('facebook').invalid && companySettings.get('facebook').touched">
+                                <small
+                                    *ngIf="companySettings.get('facebook').invalid && companySettings.get('facebook').touched"
+                                    class="text-danger"> {{'*Facebook is required'|translate}}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="form-group row">
+                            <label class="col-xl-3 col-sm-4 mb-0">Twitter</label>
+                            <input class="form-control col-xl-11 col-sm-7" value="" type="text"
+                                [class.invalid]="companySettings.get('twitter').invalid && companySettings.get('twitter').touched"
+                                formControlName="twitter">
+                            <div class="col-xl-6 col-sm-4 mb-0"
+                                *ngIf="companySettings.get('twitter').invalid && companySettings.get('twitter').touched">
+                                <small
+                                    *ngIf="companySettings.get('twitter').invalid && companySettings.get('twitter').touched"
+                                    class="text-danger"> {{'*Twitter is required'|translate}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="form-group row mb-0">
+                            <label class="col-xl-3 col-sm-4 mb-0">{{'Google'|translate}}</label>
+                            <input class="form-control col-xl-11 col-sm-7" value="" type="text"
+                                [class.invalid]="companySettings.get('google').invalid && companySettings.get('google').touched"
+                                formControlName="google">
+                            <div class="col-xl-6 col-sm-4 mb-0" *ngIf="companySettings.get('google').invalid && companySettings.get('google').touched">
+                                <small
+                                    *ngIf="companySettings.get('google').invalid && companySettings.get('google').touched"
+                                    class="text-danger"> {{'*Google is required'|translate}}</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="form-group row ">
+                            <label class="col-xl-3 col-sm-4 mb-0">{{'Instagram'|translate}}</label>
+                            <input class="form-control col-xl-11 col-sm-7" value="" type="text"
+                                [class.invalid]="companySettings.get('insta').invalid && companySettings.get('insta').touched"
+                                formControlName="insta">
+                            <div class="col-xl-6 col-sm-4 mb-0"
+                                *ngIf="companySettings.get('insta').invalid && companySettings.get('insta').touched">
+                                <small
+                                    *ngIf="companySettings.get('insta').invalid && companySettings.get('insta').touched"
+                                    class="text-danger"> {{'*Instagram is required'|translate}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                
+                <div class="submit-section">
+                    <button class="btn btn-primary submit-btn"(click)="submitCompany()">{{'Save'|translate}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /Page Content -->

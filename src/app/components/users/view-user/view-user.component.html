@@ -1,0 +1,147 @@
+<!-- Page Content -->
+<div class="content container-fluid">
+    <div class="card mb-0">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="profile-view">
+                        
+                        <div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="profile-info-left">
+                                        <ul class="order-detail">
+                                            <li>{{'Name :'|translate}} {{ collector?.firstName }} {{ collector?.lastName}}</li>
+                                            <li>{{'Phone :'|translate}} {{collector?.phone}}</li>
+                                            <li>{{'Email :'|translate}} {{collector?.email}}</li>
+                                            <li>{{'Town :'|translate}} {{towns|townPipe:collector?.town}}</li>
+                                            <li>{{'State :'|translate}} {{states|statePipe:collector?.state}}</li>
+                                            <li>{{'Account Type :'|translate}} {{collector?.type|translate}}</li>
+                                        </ul>
+                                       
+                                    
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="profile-info-left">
+                                        <ul class="order-detail">
+                                            
+                                            <li >{{'Amount :'|translate}} {{collector?.balance}} {{'EGP'|translate}}</li>
+                                            <li ><button type="button" style="margin-top: 10px; width: 200px;" class="btn btn-custom" data-toggle="modal" data-target="#add"
+                                                (click)="tempId = collector.phone" >{{'Add Amount'|translate}}</button></li>
+                                                <li ><button type="button" style="margin-top: 10px; width: 200px;" class="btn btn-custom" data-toggle="modal" data-target="#collect"
+                                                    (click)="tempId = collector.phone" >{{'Collect'|translate}}</button></li>
+                                            <li><button style="margin-top: 10px; width: 200px;" type="button" (click)="onEdit(collector.phone)" class="btn btn-custom">{{'Edit'|translate}}</button></li>
+                                           
+                                            
+                                        </ul>
+                                       
+                                    
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card tab-box">
+        <div class="row user-tabs">
+            <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
+                <ul class="nav nav-tabs nav-tabs-bottom">
+                    <li class="nav-item"><a href="#profile" data-toggle="tab" class="nav-link active">{{'Summary'|translate}}</a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content">
+
+        <!-- Profile Info Tab -->
+        <div id="profile" class="pro-overview tab-pane fade show active">
+         <app-collector-account></app-collector-account>
+        </div>
+        <!-- /Profile Info Tab -->
+
+        <!-- Invoices Tab -->
+        <div class="tab-pane fade" id="orders">
+        <!--<app-delivery-orders></app-delivery-orders>-->
+        </div>
+        <!-- /Invoices Tab -->
+
+        <!-- Account Tab -->
+        <div class="tab-pane fade" id="gifts">
+        <!--<app-delivery-accounts></app-delivery-accounts>-->
+        </div>
+        <!-- Account Tab -->
+        <!-- Services Tab -->
+        <div class="tab-pane fade" id="schadul">
+           
+         </div>
+         <!-- Services Tab -->
+ 
+      
+    </div>
+</div>
+<!-- /Page Content -->
+<div class="modal custom-modal fade" id="collect" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header text-center">
+                    <h3 class="text-center">{{'Collect'|translate}}</h3>
+                    <h4 class="text-center">{{'you want to Collect Amount'|translate}} {{collector?.balance}} {{'EGP'|translate}} {{'?'|translate}}</h4>
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <a  class="btn btn-primary continue-btn"
+                                (click)="onCollect()">{{'Collect'|translate}}</a>
+                        </div>
+                        <div class="col-6">
+                            <a  data-dismiss="modal"
+                                class="btn btn-primary cancel-btn">{{'Cancel'|translate}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal custom-modal fade" id="add" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="form-header text-center">
+                    <h3 class="text-center">{{'Add Amount'|translate}}</h3>
+                    <div class="form-group row text-center">
+                        <input style="margin: auto; text-align: center; width: 150px;" class="form-control " id="validationCustom0"
+                                                type="number"  [(ngModel)]="amount" required="">
+                    </div>
+                    
+                </div>
+                <div class="modal-btn delete-action">
+                    <div class="row">
+                        <div class="col-6">
+                            <a  class="btn btn-primary continue-btn"
+                                (click)="onAdd()">{{'Add'|translate}}</a>
+                        </div>
+                        <div class="col-6">
+                            <a  data-dismiss="modal"
+                                class="btn btn-primary cancel-btn">{{'Cancel'|translate}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+<!-- Container-fluid starts-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <section class="section-b-space" *ngIf="order">
+                <div *ngIf="order" class="w-full h-full">
+                 <div class="row ">   
+                   <div class="container">
+                    <div class="row order-success-sec">
+                     <div class="col-sm-12">
+                    <div class="myy-5"></div>
+                  </div>
+                  <div class="col-sm-4 border-br">
+                    <h4>{{'Route Information'|translate}}</h4>
+                    <div class="myy-5"></div>
+                    <ul class="order-detail">
+                        <li>{{'Order ID :'|translate}} {{ order.id }}</li>
+                        <li>{{'Order Date :'|translate}} {{ order.date|date}}</li>
+
+                    </ul>
+                    <div class="myy-5"></div>
+                  </div>
+                  <div class="col-sm-4 border-br">
+                    
+                    <h4>{{'Driver Information'|translate}}</h4>
+                    <div class="myy-5"></div>
+                    <ul class="order-detail">
+                        <li>{{'Name : '|translate}}<a routerLink = "/delivery/view-delivery-boy" [queryParams]="{id: order?.driverId}" target="_blank">{{ driver.name }} </a></li>
+                        <li>{{'Contact No.'|translate}} {{ driver.phone }}</li>
+                     
+                    </ul>
+                    <div class="myy-5"></div>
+                  </div>
+                  <div  class="col-sm-4 border-br">
+                    <h4>{{'Summery'|translate}}</h4>
+                    <div class="myy-5"></div>
+                    <ul class="order-detail">
+                        <li>{{'Points : '|translate}} {{ order.routeItems.length }}</li>
+                        <li>{{'Complete : '|translate}} {{ order.routeItems |completePipe }}</li>
+                        <li>{{'Damage : '|translate}} {{ order.routeItems |damagePipe }}</li>
+                        <li>{{'Return : '|translate}} {{ order.routeItems |returnPipe }}</li>
+                        <li>{{'Lost : '|translate}} {{ order.routeItems |lostPipe }}</li>
+                        
+                    </ul>
+                    <div class="myy-4"></div>
+                  
+                </div>
+               
+                
+                
+                
+            </div>
+            <div class="row" >
+                <div class="col-sm-12" style="padding-left: 0;padding-right: 0;">
+                <div *ngIf="order" class="w-full h-full">
+   
+                            <div class="map-icons street">
+                            
+                                <div  style="background-color: #ff5a00; padding: 14px;">
+                                    <h6 class="text-white">{{'Distance :'|translate}} {{distance | number : '1.2-2'}} {{'Km'|translate}}</h6>
+                                </div>
+            
+                                </div>
+                            <agm-map  [latitude]="this.latitude" [longitude]="this.longitude" [zoom]="zoom" >
+                            <agm-polyline  [strokeColor]="options.fillColor" >
+                                <agm-polyline-point *ngFor="let data of lines" 
+                                    [latitude]="ConvertString(data.lat)"
+                                    [longitude]="ConvertString(data.lng)">
+                                </agm-polyline-point>
+                            </agm-polyline>
+                            <agm-marker
+                            *ngFor="let point of routeItems" 
+                             [latitude]="point.latitude"
+                             [longitude]="point.longtude"
+                             (markerClick)="markerClicked(point)" 
+                             [iconUrl] ="shopIcon">
+                            </agm-marker>
+                   
+                        </agm-map>
+                        
+                    
+        
+                   </div> 
+                </div>
+                </div>
+          
+             <div class="row  ">
+                <div class="col-lg-12" style="padding-right: 0;padding-left: 0;">
+                    <div class="product-order">
+                        <div  class="col-sm-12" style="padding-right: 0;padding-left: 0;">
+                         
+                            <table class="table cart-table table-responsive-xs">
+                                <thead>
+                                    <tr class="table-head">
+                                        <th scope="col">{{'i'|translate}}</th>
+                                        <th scope="col">{{'Address'|translate}}</th>
+                                        <th scope="col">{{'Status'|translate}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody *ngFor="let item of routeItems">
+                                    <tr>
+                                      
+                                       
+                                      
+                                     
+                                        <td>
+                                            <h2>
+                                                {{ item.id }} 
+                                            </h2>
+                                        </td>
+                                        <td>
+                                            <h2>{{item.customerAddress}}</h2>
+                                        </td>
+                                        
+                                        <td>
+                                            {{item.status|routStatusPipe}}
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    </div>
+            
+ </section>
+
+        </div>
+    </div>
+</div>
+<!-- Container-fluid Ends-->

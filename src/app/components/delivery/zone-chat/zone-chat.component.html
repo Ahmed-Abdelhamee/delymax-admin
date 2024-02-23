@@ -1,0 +1,107 @@
+
+    <div class="flex col-xl-12 w-full h-full full-height py-8 pl-8 pr-6">
+        <div class="small-gap"></div>
+        <div class="col-md-4 ">
+          <ul class="list-group">
+            <li
+              class="list-group-item"
+              *ngFor="let item of chatsList"
+              [class.active]="item.id == currentIndex"
+              (click)="setActiveChat(item)"
+            >
+            <div class="user-card">
+            <div class="chat-content">
+                <div *ngIf="item?.type == 'support'" class="dv_icon"><img style="height: 30px;width: 30px; " src="assets/images/dashboard/motorcycle.png"></div>
+                <h4>{{ item.name }}  </h4>
+                <p>{{ item.last_msg }}</p>
+                <span class="chat-time">{{item.timeStamp|dateAgo:'ar' |translate}}</span>
+                <div *ngIf = "item?.notSeen" class="mr-1 text-textMedium not_seen" 
+                >
+                </div>
+            </div>
+       
+        </div>
+            </li>
+          </ul>
+         
+        </div>
+        <div class="small-gap"></div>
+        <div class="col-md-8" *ngIf="chats" >
+            <div class="chat-window">
+                <div class="fixed-header">
+                    <div class="navbar">
+                        <div class="user-details">
+                            
+                            <div class="user-info float-left">
+                                <a *ngIf="chatMs.type !='support'" routerLink = "/customers/view-customer" [queryParams]="{id: chatMs?.id}" [title]="chatMs?.name" class="text-white" target="_blank"><span>{{ chatMs?.name }}</span></a>
+                                <a *ngIf="chatMs.type =='support'" routerLink = "/delivery/view-delivery-boy" [queryParams]="{id: chatMs?.id}" [title]="chatMs?.name" class="text-white" target="_blank"><span>{{ chatMs?.name }}</span></a>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="chat-contents">
+                    <div class="chat-content-wrap">
+                        <div class="chat-wrap-inner">
+                            <div class="chat-box" id="chats" style="overflow: scroll; height: xyz;" #scrollMe [scrollTop]="scrollMe.scrollHeight" >
+                                <div class="chats" >
+                               
+                                    <div class="chat" [ngClass]="item.status === 'sent' ? 'chat-right' : 'chat-left'"
+                                        *ngFor="let item of chats">
+                                        <div class="chat-avatar" *ngIf="item.status === 'received'">
+                                            <a href="javascript:" class="avatar">
+                                                <img alt="" src="assets/images/user.png">
+                                            </a>
+                                        </div>
+                                        <div class="chat-body">
+                                            <div class="chat-bubble">
+                                                <div *ngIf="item.with !='complain'" class="chat-content">
+                                                    <p style="white-space: pre-line">{{ item.message }}</p>
+                                                    <span class="chat-time">{{item.sort|dateAgo:'ar' |translate}}</span>
+                                                </div>
+                                                <div *ngIf="item.with =='complain'" class="chat-content" >
+                                                    <a routerLink = "/sales/view-order"  [queryParams]="{id: item.order_number}" target="_blank"><p style="white-space: pre-line">{{ item.message }}</p></a>
+                                                    <span class="chat-time">{{item.sort|dateAgo:'ar' |translate}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-footer">
+                    <div class="message-bar">
+                        <div class="message-inner">
+                            <a class="link attach-icon" href="javascript:" data-toggle="modal" data-target="#drag_files"><img
+                                    src="assets/img/attachment.png" alt=""></a>
+                            <div class="message-area">
+                                <div class="input-group">
+                                    <textarea class="form-control" placeholder="{{'Type message...'|translate}}"
+                                        [(ngModel)]="messageChat"></textarea>
+                                    <span class="input-group-append">
+                                        <a class="btn btn-chat" type="button" (click)="sendMessage()"><i
+                                                class="fa fa-send"></i></a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+      
+          
+        </div>
+        <div *ngIf="!chats">
+            <br />
+            <p>Please click on a device...</p>
+          </div>
+      </div>
+    <div class="vertical-height"></div>
+     
+                            
+                               
+                           
+                          
